@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginStart="@dimen/_3sdp"
+    android:layout_marginEnd="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardElevation="@dimen/_2sdp">
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/example_title_associate_product_manager"
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/textPrimaryColor"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_title_full_time"
+            android:textSize="@dimen/_12ssp"
+            android:id="@+id/mtv_full_time"
+            android:drawableStart="@drawable/ic_suitcase__12"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/example_title_location"
+            android:textSize="@dimen/_12ssp"
+            android:drawableStart="@drawable/ic_location_12"
+            android:layout_below="@id/mtv_full_time"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="@string/btn_apply"
+            android:textColor="@color/white"
+            app:cornerRadius="@dimen/_20sdp"/>
+
+    </RelativeLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</com.google.android.material.card.MaterialCardView>

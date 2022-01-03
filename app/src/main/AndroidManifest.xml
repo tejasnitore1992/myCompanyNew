@@ -10,14 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCompanyNew">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ApplyJobActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity
+            android:name=".LifeAtMyCompanyActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".GetInTouchActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

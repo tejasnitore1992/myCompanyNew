@@ -1,3 +1,59 @@
 <resources>
     <string name="app_name">MyCompanyNew</string>
+
+    <string name="toolbar_title_get_in_touch">Get In Touch</string>
+    <string name="toolbar_title_life_at_my_company">Life At My Company</string>
+    <string name="toolbar_title_apply_job">Apply  Job</string>
+
+    <string name="btn_submit">Submit</string>
+    <string name="btn_apply">apply</string>
+    <string name="btn_choose_file">Choose File</string>
+    <string name="btn_reset">Reset</string>
+
+
+    <string name="title_upload_resume">Upload Resume* (Word &amp; PDF Only | Limit: 2MB)</string>
+    <string name="title_educational_information_star">Eductional Information*</string>
+    <string name="title_number">Number</string>
+    <string name="title_male">Male</string>
+    <string name="title_female">Female</string>
+    <string name="title_other">Other</string>
+    <string name="title_address">Address</string>
+    <string name="title_current_opening">Current Opening</string>
+    <string name="title_you_are_applying_for">You Are Applying For</string>
+    <string name="title_if_you_would_like_to_work_with_us">If You Would Like to Work With Us</string>
+    <string name="title_please_take_a_moment_to_fill_the_form">Please take a moment to fill the from</string>
+
+    <string name="example_title_associate_product_manager">Associate Product Manager(Digital)</string>
+    <string name="example_title_full_time">&#160;&#160;Full Time</string>
+    <string name="example_title_location">&#160;&#160;Ahmedabad</string>
+
+    <string name="example_number">+91 12345 67890 / +91 12345 67890</string>
+    <string name="example_address">Millard Ave Street No 26, Barcelona, Spin</string>
+    <string name="example_no_file_selected">No File selected</string>
+
+    <string name="hint_name">Name</string>
+    <string name="hint_name_star">Name*</string>
+    <string name="hint_number">Number</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_message">Message</string>
+    <string name="hint_date_of_birth_star">Date of birth*</string>
+    <string name="hint_gender_star">Gender*</string>
+    <string name="hint_city_star">City*</string>
+    <string name="hint_contact_no_star">Contact No*</string>
+    <string name="hint_email_id_star">Email Id*</string>
+    <string name="hint_total_year_of_experience_star">Total Experience (Years)*</string>
+
+    <string name="radio_button_graduate">Graduate</string>
+    <string name="radio_button_post_graduate">Post Graduate</string>
+    <string name="radio_button_other">Other</string>
+
+    <string-array name="apply_position_array">
+        <item>Position*</item>
+
+    </string-array>
+
+    <string-array name="apply_state_array">
+        <item>State</item>
+
+    </string-array>
 </resources>
