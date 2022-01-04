@@ -27,6 +27,6 @@
 
     <color name="textPrimaryColor">@color/grey_80</color>
     <color name="textColor555555">#555555</color>
-    <color name="colorPageBackground">#EFEFEF</color>
+    <color name="colorPageBackground">#f2f2f2</color>
 
 </resources>
