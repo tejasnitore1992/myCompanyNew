@@ -9,8 +9,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.mycompanynew.R;
+import com.mycompanynew.about_us.AboutUsFragment;
 import com.mycompanynew.databinding.ActivityMainBinding;
+import com.mycompanynew.get_in_touch.GetInTouchFragment;
 import com.mycompanynew.home.HomeFragment;
+import com.mycompanynew.life_at_my_company.LifeAtMyCompanyFragment;
 import com.mycompanynew.our_services.OurServicesFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -139,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rl_phone_call:
                 binding.llcBottomMenu.phoneCallUnselect.setVisibility(View.GONE);
                 binding.llcBottomMenu.phoneCallSelect.setVisibility(View.VISIBLE);
+                fragment = new GetInTouchFragment();
+                mTag = "";
                 break;
             case R.id.rl_service:
                 binding.llcBottomMenu.serviceUnselect.setVisibility(View.GONE);
@@ -149,10 +154,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rl_client:
                 binding.llcBottomMenu.clientUnselect.setVisibility(View.GONE);
                 binding.llcBottomMenu.clientSelect.setVisibility(View.VISIBLE);
+                fragment = new AboutUsFragment();
+                mTag = "";
                 break;
             case R.id.rl_no_vacancy:
                 binding.llcBottomMenu.noVacancyUnselect.setVisibility(View.GONE);
                 binding.llcBottomMenu.noVacancySelect.setVisibility(View.VISIBLE);
+                fragment = new LifeAtMyCompanyFragment();
+                mTag = "";
                 break;
             default:
                 binding.llcBottomMenu.homeUnselect.setVisibility(View.GONE);

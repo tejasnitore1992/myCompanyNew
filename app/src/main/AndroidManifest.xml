@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyCompanyNew">
         <activity
+            android:name=".our_services.activities.ProductDetailsActivity"
+            android:exported="true" />
+        <activity
             android:name=".our_services.activities.ServicesDetailsActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".bottom_menu.MainActivity"
             android:exported="true"
@@ -25,18 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
-        <activity
             android:name=".ApplyJobActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".LifeAtMyCompanyActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".GetInTouchActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

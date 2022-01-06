@@ -5,28 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPageBackground"
-    tools:context=".LifeAtMyCompanyActivity">
+    tools:context=".life_at_my_company.LifeAtMyCompanyFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
+
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary"
-                app:navigationIcon="@drawable/ic_back_arrow"
-                app:titleTextColor="@color/white"
-                app:title="@string/toolbar_title_life_at_my_company"
-                app:titleCentered="true"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:navigationIcon="@drawable/ic_back_arrow"
+            app:title="@string/toolbar_title_life_at_my_company"
+            app:titleCentered="true"
+            app:titleTextColor="@color/white" />
 
 
         <androidx.core.widget.NestedScrollView
@@ -36,26 +30,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/_20sdp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_15sdp">
 
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_2sdp"
-                    app:cardElevation="@dimen/_1sdp"
-                    app:cardUseCompatPadding="true"
                     app:cardCornerRadius="@dimen/_8sdp"
-                    app:cardPreventCornerOverlap="false">
+                    app:cardElevation="@dimen/_1sdp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/_150sdp"
                         android:adjustViewBounds="true"
-                        app:srcCompat="@drawable/banner_people"
-                        android:scaleType="fitXY"/>
+                        android:minHeight="@dimen/_150sdp"
+                        android:scaleType="fitXY"
+                        app:srcCompat="@drawable/banner_people" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -63,12 +57,12 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:text="@string/title_current_opening"
+                    android:textColor="@color/textPrimaryColor"
                     android:textSize="@dimen/_18ssp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textPrimaryColor"/>
+                    android:textStyle="bold" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -76,8 +70,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    tools:listitem="@layout/item_career"
-                    tools:itemCount="5"/>
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_career" />
 
             </LinearLayout>
 

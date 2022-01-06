@@ -1,24 +1,25 @@
-package com.mycompanynew.about_us;
+package com.mycompanynew.life_at_my_company;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mycompanynew.R;
-import com.mycompanynew.databinding.FragmentAboutUsBinding;
+import com.mycompanynew.adapters.CareerAdapter;
+import com.mycompanynew.databinding.FragmentLifeAtMyCompanyBinding;
 
 
-public class AboutUsFragment extends Fragment {
+public class LifeAtMyCompanyFragment extends Fragment {
 
-    private FragmentAboutUsBinding binding;
+    private FragmentLifeAtMyCompanyBinding binding;
 
-    public AboutUsFragment() {
+    public LifeAtMyCompanyFragment() {
         // Required empty public constructor
     }
 
@@ -34,14 +35,17 @@ public class AboutUsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentAboutUsBinding.inflate(inflater,container, false);
+        binding = FragmentLifeAtMyCompanyBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        binding.rvCareer.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.rvCareer.setAdapter(new CareerAdapter(getActivity(), null));
     }
 }

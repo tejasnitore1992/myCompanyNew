@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/example_title_associate_product_manager"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="@color/textPrimaryColor"
         android:textStyle="bold"/>
 
@@ -36,14 +36,14 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_suitcase__12"
             android:text="@string/example_title_full_time"
-            android:textSize="@dimen/_10ssp" />
+            android:textSize="@dimen/_8ssp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/example_title_location"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_8ssp"
             android:drawableStart="@drawable/ic_location_12"
             android:layout_below="@id/mtv_full_time"/>
 
