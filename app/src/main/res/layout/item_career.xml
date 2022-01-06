@@ -31,19 +31,19 @@
         android:layout_marginTop="@dimen/_10sdp">
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_full_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_suitcase__12"
             android:text="@string/example_title_full_time"
-            android:textSize="@dimen/_12ssp"
-            android:id="@+id/mtv_full_time"
-            android:drawableStart="@drawable/ic_suitcase__12"/>
+            android:textSize="@dimen/_10ssp" />
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/example_title_location"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:drawableStart="@drawable/ic_location_12"
             android:layout_below="@id/mtv_full_time"/>
 
