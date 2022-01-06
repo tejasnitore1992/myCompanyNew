@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.ActivityMainBinding;
 import com.mycompanynew.home.HomeFragment;
+import com.mycompanynew.our_services.OurServicesFragment;
 
 public class MainActivity extends AppCompatActivity {
     //implements NavigationBarView.OnItemSelectedListener
@@ -142,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.rl_service:
                 binding.llcBottomMenu.serviceUnselect.setVisibility(View.GONE);
                 binding.llcBottomMenu.serviceSelect.setVisibility(View.VISIBLE);
+                fragment = new OurServicesFragment();
+                mTag = "";
                 break;
             case R.id.rl_client:
                 binding.llcBottomMenu.clientUnselect.setVisibility(View.GONE);

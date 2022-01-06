@@ -5,20 +5,26 @@
       <map>
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/background_bottom_menu.xml" value="0.2635416666666667" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/background_bottom_menu_icon.xml" value="0.2635416666666667" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/ic_back_arrow.xml" value="0.2635416666666667" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/item_our_services.xml" value="0.2635416666666667" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/radio_home.xml" value="0.2635416666666667" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_apply_job.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_get_in_touch.xml" value="0.264" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_home.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_life_at_my_company.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_main.xml" value="0.24739583333333334" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_services_details.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_about_us.xml" value="0.24739583333333334" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_business_advisor.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_home.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_our_services.xml" value="0.24739583333333334" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_business_advisor.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_career.xml" value="0.264" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_current_opening.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_home_slide_page.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_our_service.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_our_service_text.xml" value="0.24739583333333334" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/item_services.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/layout_bottom_menu.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/toolbar.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24739583333333334" />

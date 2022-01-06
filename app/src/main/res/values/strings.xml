@@ -33,8 +33,10 @@
     <string name="example_address">Millard Ave Street No 26, Barcelona, Spin</string>
     <string name="example_no_file_selected">No File selected</string>
 
-    <string name="description_my_company">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n\n
+    <string name="description_my_company">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,\n\n<br/><br/>
 When an unknown printer took a galley of type &amp; scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
+
+
 
     <string name="hint_name">Name</string>
     <string name="hint_name_star">Name*</string>
