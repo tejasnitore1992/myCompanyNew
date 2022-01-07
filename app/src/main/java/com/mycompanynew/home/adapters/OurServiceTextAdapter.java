@@ -1,5 +1,6 @@
 package com.mycompanynew.home.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.ItemOurServiceTextBinding;
+import com.mycompanynew.home.response.ServiceListItem;
 
 import java.util.List;
 
 public class OurServiceTextAdapter extends RecyclerView.Adapter<OurServiceTextAdapter.MyViewHolder> {
 
+    private Context context;
+    private List<ServiceListItem> serviceList;
+
+    public OurServiceTextAdapter(Context context, List<ServiceListItem> serviceList) {
+        this.context = context;
+        this.serviceList = serviceList;
+    }
 
     @NonNull
     @Override
@@ -28,12 +37,13 @@ public class OurServiceTextAdapter extends RecyclerView.Adapter<OurServiceTextAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        ServiceListItem item = serviceList.get(position);
+        holder.binding.mtvServicePoint.setText(item.getCompanyServiceDetailListName());
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return serviceList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

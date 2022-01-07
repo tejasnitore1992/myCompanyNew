@@ -13,6 +13,7 @@
         app:srcCompat="@drawable/ic_circle_check" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_service_point"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"

@@ -1,5 +1,6 @@
 package com.mycompanynew.home.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,24 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.ItemOurServiceBinding;
+import com.mycompanynew.home.response.OurServicesItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.MyViewHolder> {
 
-    private int[] imageList;
+    private Context context;
+    private List<OurServicesItem> ourServices;
     private ViewPager2 viewPager2;
 
-    public OurServiceAdapter(int[] imageList, ViewPager2 viewPager2) {
-        this.imageList = imageList;
+    public OurServiceAdapter(Context context, List<OurServicesItem> ourServices, ViewPager2 viewPager2) {
+        this.context = context;
+        this.ourServices = ourServices;
         this.viewPager2 = viewPager2;
     }
 
@@ -33,16 +41,24 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        OurServicesItem ourServicesItem = ourServices.get(position);
 
-        holder.binding.roundedImageView.setImageResource(imageList[position]);
-        if (position == imageList.length - 2){
+        Glide.with(context)
+                .load(ourServicesItem.getCompanyServiceImage())
+                .placeholder(R.drawable.ic_refresh)
+                .error(R.drawable.ic_broken_image)
+                .into(holder.binding.roundedImageView);
+
+        holder.binding.mtvTitle.setText(ourServicesItem.getCompanyServiceName());
+//        holder.binding.roundedImageView.setImageResource(imageList[position]);
+//        if (position == imageList.length - 2){
 //            viewPager2.post(runnable);
-        }
+//        }
     }
 
     @Override
     public int getItemCount() {
-        return imageList.length;
+        return ourServices.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

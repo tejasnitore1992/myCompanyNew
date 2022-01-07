@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -17,7 +18,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.FragmentHomeBinding;
+import com.mycompanynew.home.response.AboutCompany;
+import com.mycompanynew.home.response.CurrentOpeningItem;
 import com.mycompanynew.home.response.DashboardResponse;
+import com.mycompanynew.home.response.OurServicesItem;
+import com.mycompanynew.home.response.ServiceListItem;
+import com.mycompanynew.home.response.SliderItem;
 import com.mycompanynew.interfaces.ClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
@@ -30,6 +36,9 @@ import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
 import com.mycompanynew.utils.VariableBag;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
 
@@ -37,15 +46,23 @@ import rx.schedulers.Schedulers;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private HomeSliderViewPageAdapter homeSliderViewPageAdapter;
 
-    RestCall restCall;
-    Tools tools;
-    PreferenceManager preferenceManager;
+    private List<SliderItem> slider = new ArrayList<>();
+    private List<OurServicesItem> ourServices = new ArrayList<>();
+    private List<ServiceListItem> servicePointList = new ArrayList<>();
+    private List<CurrentOpeningItem> currentOpening = new ArrayList<>();
+
+    private HomeSliderViewPageAdapter homeSliderViewPageAdapter;
+    private OurServiceAdapter ourServiceAdapter;
+    private OurServiceTextAdapter ourServiceTextAdapter;
+    private CurrentOpeningAdapter currentOpeningAdapter;
+
+    private RestCall restCall;
+    private Tools tools;
+    private PreferenceManager preferenceManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
@@ -64,9 +81,18 @@ public class HomeFragment extends Fragment {
                 Tools.getCurrentPassword(preferenceManager.getSocietyId(),
                         preferenceManager.getRegisteredUserId(),
                         preferenceManager.getKeyValueString(VariableBag.USER_Mobile)));
+
         setHomeSlider();
         setOurService();
         setCurrentOpening();
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                binding.swipeRefreshLayout.setRefreshing(false);
+                getData();
+            }
+        });
+        getData();
     }
 
     private void setCurrentOpening() {
@@ -78,7 +104,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        CurrentOpeningAdapter currentOpeningAdapter = new CurrentOpeningAdapter();
+        currentOpeningAdapter = new CurrentOpeningAdapter(getActivity(),currentOpening);
         currentOpeningAdapter.setClickListener(new ClickListener() {
             @Override
             public void onSelect(Object obj, View view, int position) {
@@ -118,12 +144,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void setOurService() {
-
-        int[] imageList = new int[]{R.drawable.our_service_banner,
-                R.drawable.our_service_banner,
-                R.drawable.our_service_banner,
-                R.drawable.our_service_banner};
-        binding.vpOurService.setAdapter(new OurServiceAdapter(imageList, binding.vpOurService));
+        ourServiceAdapter = new OurServiceAdapter(getActivity(),ourServices, binding.vpOurService);
+        binding.vpOurService.setAdapter(ourServiceAdapter);
         binding.vpOurService.setClipToPadding(false);
         binding.vpOurService.setClipChildren(false);
         binding.vpOurService.setOffscreenPageLimit(3);
@@ -147,15 +169,22 @@ public class HomeFragment extends Fragment {
                 super.onPageSelected(position);
 //                sliderHandler.removeCallbacks(sliderRunnable);
 //                sliderHandler.postDelayed(sliderRunnable, 2000); // slide duration 2 seconds
+                OurServicesItem ourServicesItem = ourServices.get(position);
+                servicePointList.clear();
+                if(ourServicesItem.getServiceList() != null)
+                    servicePointList.addAll(ourServicesItem.getServiceList());
+                if(ourServiceTextAdapter != null)
+                    ourServiceTextAdapter.notifyDataSetChanged();
             }
         });
 
-        binding.rvOurService.setAdapter(new OurServiceTextAdapter());
+        ourServiceTextAdapter = new OurServiceTextAdapter(getActivity(),servicePointList);
+        binding.rvOurService.setAdapter(ourServiceTextAdapter);
 
     }
 
     private void setHomeSlider() {
-        homeSliderViewPageAdapter = new HomeSliderViewPageAdapter(getActivity());
+        homeSliderViewPageAdapter = new HomeSliderViewPageAdapter(getActivity(),slider);
         binding.vpSlider.setAdapter(homeSliderViewPageAdapter);
         binding.vpSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -193,7 +222,9 @@ public class HomeFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
+                                binding.nestedScrollView.setVisibility(View.GONE);
+                                binding.llMsg.setVisibility(View.VISIBLE);
+                                binding.mtvMsg.setText("Something went wrong!!!");
                             }
                         });
                     }
@@ -206,12 +237,50 @@ public class HomeFragment extends Fragment {
                             public void run() {
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
+                                    binding.nestedScrollView.setVisibility(View.VISIBLE);
+                                    binding.llMsg.setVisibility(View.GONE);
+                                    setValues(response);
+
                                 } else {
                                     // No data view
+                                    binding.nestedScrollView.setVisibility(View.GONE);
+                                    binding.llMsg.setVisibility(View.VISIBLE);
+                                    binding.mtvMsg.setText("Something went wrong!!!");
                                 }
                             }
                         });
                     }
                 });
+    }
+
+    private void setValues(DashboardResponse response) {
+
+        slider.clear();
+        slider.addAll(response.getSlider());
+        if(homeSliderViewPageAdapter != null)
+            homeSliderViewPageAdapter.notifyDataSetChanged();
+
+        AboutCompany aboutCompany = response.getAboutCompany();
+        binding.mtvCompanyName.setText(aboutCompany.getCompanyHomeTitle());
+        binding.mtvCompanyDescription.setText(aboutCompany.getCompanyHomeDescription());
+
+        ourServices.clear();
+        ourServices.addAll(response.getOurServices());
+        if(ourServiceAdapter != null)
+            ourServiceAdapter.notifyDataSetChanged();
+
+        if(!ourServices.isEmpty()) {
+            OurServicesItem ourServicesItem = ourServices.get(0);
+            servicePointList.clear();
+            if (ourServicesItem.getServiceList() != null)
+                servicePointList.addAll(ourServicesItem.getServiceList());
+            if (ourServiceTextAdapter != null)
+                ourServiceTextAdapter.notifyDataSetChanged();
+        }
+
+        currentOpening.clear();
+        currentOpening.addAll(response.getCurrentOpening());
+        if(currentOpeningAdapter != null)
+            currentOpeningAdapter.notifyDataSetChanged();
     }
 }

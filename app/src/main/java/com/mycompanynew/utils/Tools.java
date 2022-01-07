@@ -1276,7 +1276,8 @@ public class Tools {
 
     public String CheckNull(String data) {
         if (data == null || data.trim().equals("")) {
-            return preferenceManager.getJSONKeyStringObject("no_data_avilable");
+//            return preferenceManager.getJSONKeyStringObject("no_data_avilable");
+            return "no data avilable";
         } else {
             return data;
         }

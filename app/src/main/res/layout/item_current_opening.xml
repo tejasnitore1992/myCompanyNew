@@ -19,6 +19,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/example_title_associate_product_manager"
@@ -33,21 +34,25 @@
             android:layout_marginTop="@dimen/_8sdp">
 
             <com.google.android.material.textview.MaterialTextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/example_title_full_time"
                 android:textSize="@dimen/_10ssp"
                 android:id="@+id/mtv_full_time"
                 android:textColor="@color/grey_60"
+                android:lines="1"
                 android:drawableStart="@drawable/ic_suitcase__12"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/example_title_location"
                 android:textSize="@dimen/_10ssp"
                 android:textColor="@color/grey_60"
+                android:lines="1"
                 android:drawableStart="@drawable/ic_location_12"
                 android:layout_below="@id/mtv_full_time"/>
 
