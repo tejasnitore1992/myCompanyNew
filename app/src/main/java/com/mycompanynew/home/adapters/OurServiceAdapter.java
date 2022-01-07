@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemOurServiceBinding;
 
 public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.MyViewHolder> {
 
@@ -25,14 +26,15 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_our_service,parent,false);
-        return new OurServiceAdapter.MyViewHolder(view);
+        ItemOurServiceBinding binding = ItemOurServiceBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_our_service,parent,false);
+        return new OurServiceAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        holder.roundedImageView.setImageResource(imageList[position]);
+        holder.binding.roundedImageView.setImageResource(imageList[position]);
         if (position == imageList.length - 2){
 //            viewPager2.post(runnable);
         }
@@ -44,11 +46,11 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        RoundedImageView roundedImageView;
+        ItemOurServiceBinding binding;
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            roundedImageView = (RoundedImageView) itemView.findViewById(R.id.rounded_image_view);
+        public MyViewHolder(@NonNull ItemOurServiceBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
 
         }
     }

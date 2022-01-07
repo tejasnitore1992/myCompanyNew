@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemOurServiceTextBinding;
 
 public class ServiceImpPointAdapter extends RecyclerView.Adapter<ServiceImpPointAdapter.MyViewHolder> {
 
@@ -15,8 +16,9 @@ public class ServiceImpPointAdapter extends RecyclerView.Adapter<ServiceImpPoint
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_our_service_text,parent,false);
-        return new ServiceImpPointAdapter.MyViewHolder(view);
+        ItemOurServiceTextBinding binding = ItemOurServiceTextBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_our_service_text,parent,false);
+        return new ServiceImpPointAdapter.MyViewHolder(binding);
     }
 
     @Override
@@ -30,8 +32,10 @@ public class ServiceImpPointAdapter extends RecyclerView.Adapter<ServiceImpPoint
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
+        ItemOurServiceTextBinding binding;
+        public MyViewHolder(@NonNull ItemOurServiceTextBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

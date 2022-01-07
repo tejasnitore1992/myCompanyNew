@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemCurrentOpeningBinding;
 import com.mycompanynew.interfaces.ClickListener;
 
 public class CurrentOpeningAdapter extends RecyclerView.Adapter<CurrentOpeningAdapter.MyViewHolder> {
@@ -24,14 +25,15 @@ public class CurrentOpeningAdapter extends RecyclerView.Adapter<CurrentOpeningAd
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_current_opening,parent,false);
-        return new CurrentOpeningAdapter.MyViewHolder(view);
+        ItemCurrentOpeningBinding binding = ItemCurrentOpeningBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+
+        return new CurrentOpeningAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.mbtnApply.setOnClickListener(new View.OnClickListener() {
+        holder.binding.mbtnApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(clickListener != null)
@@ -46,15 +48,12 @@ public class CurrentOpeningAdapter extends RecyclerView.Adapter<CurrentOpeningAd
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        MaterialTextView mtvFullTime;
-        MaterialButton mbtnApply;
+        ItemCurrentOpeningBinding binding;
 
+        public MyViewHolder(@NonNull ItemCurrentOpeningBinding binding) {
+            super(binding.getRoot());
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            mtvFullTime = (MaterialTextView) itemView.findViewById(R.id.mtv_full_time);
-            mbtnApply = (MaterialButton) itemView.findViewById(R.id.mbtn_apply);
+            this.binding =binding;
         }
     }
 }

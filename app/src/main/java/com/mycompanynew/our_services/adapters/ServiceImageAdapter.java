@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemBusinessAdvisorBinding;
 import com.mycompanynew.interfaces.ClickListener;
 
 public class ServiceImageAdapter extends RecyclerView.Adapter<ServiceImageAdapter.MyViewHolder> {
@@ -23,14 +24,17 @@ public class ServiceImageAdapter extends RecyclerView.Adapter<ServiceImageAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_business_advisor,parent,false);
-        return new ServiceImageAdapter.MyViewHolder(view);
+
+        ItemBusinessAdvisorBinding binding = ItemBusinessAdvisorBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_business_advisor,parent,false);
+        return new ServiceImageAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.acivService.setOnClickListener(new View.OnClickListener() {
+        holder.binding.acivService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(clickListener != null)
@@ -45,11 +49,11 @@ public class ServiceImageAdapter extends RecyclerView.Adapter<ServiceImageAdapte
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        AppCompatImageView acivService;
+        ItemBusinessAdvisorBinding binding;
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            acivService = (AppCompatImageView) itemView.findViewById(R.id.aciv_service);
+        public MyViewHolder(@NonNull ItemBusinessAdvisorBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

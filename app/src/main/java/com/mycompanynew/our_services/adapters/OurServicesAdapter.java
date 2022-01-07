@@ -10,6 +10,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemServicesBinding;
 import com.mycompanynew.interfaces.ClickListener;
 
 public class OurServicesAdapter extends RecyclerView.Adapter<OurServicesAdapter.MyViewHolder> {
@@ -23,13 +24,14 @@ public class OurServicesAdapter extends RecyclerView.Adapter<OurServicesAdapter.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_services,parent,false);
-        return new OurServicesAdapter.MyViewHolder(view);
+        ItemServicesBinding binding = ItemServicesBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+//        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_services,parent,false);
+        return new OurServicesAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.llcService.setOnClickListener(new View.OnClickListener() {
+        holder.binding.llcService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(clickListener != null)
@@ -45,12 +47,10 @@ public class OurServicesAdapter extends RecyclerView.Adapter<OurServicesAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        LinearLayoutCompat llcService;
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-
-            llcService = (LinearLayoutCompat) itemView.findViewById(R.id.llc_service);
+        ItemServicesBinding binding;
+        public MyViewHolder(@NonNull ItemServicesBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
 
         }
     }

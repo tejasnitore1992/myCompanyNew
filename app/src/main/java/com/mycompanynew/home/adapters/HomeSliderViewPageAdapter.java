@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.google.android.material.card.MaterialCardView;
 import com.mycompanynew.R;
+import com.mycompanynew.databinding.ItemHomeSlidePageBinding;
 
 import java.util.Objects;
 
@@ -40,13 +41,14 @@ public class HomeSliderViewPageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View itemView = mLayoutInflater.inflate(R.layout.item_home_slide_page, container, false);
+        ItemHomeSlidePageBinding binding = ItemHomeSlidePageBinding.inflate(LayoutInflater.from(container.getContext()),container, false);
+//        View itemView = mLayoutInflater.inflate(R.layout.item_home_slide_page, container, false);
 
 //        AppCompatImageView imageView = itemView.findViewById(R.id.aciv_slider);
 //        imageView.setBackgroundResource(imageList[0]);
 
-        Objects.requireNonNull(container).addView(itemView);
-        return itemView;
+        Objects.requireNonNull(container).addView(binding.getRoot());
+        return binding.getRoot();
     }
 
     @Override
