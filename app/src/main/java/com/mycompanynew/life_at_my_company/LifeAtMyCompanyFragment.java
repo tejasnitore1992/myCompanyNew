@@ -1,5 +1,6 @@
 package com.mycompanynew.life_at_my_company;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.mycompanynew.adapters.CareerAdapter;
 import com.mycompanynew.databinding.FragmentLifeAtMyCompanyBinding;
+import com.mycompanynew.interfaces.ClickListener;
+import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 
 
 public class LifeAtMyCompanyFragment extends Fragment {
@@ -46,6 +49,14 @@ public class LifeAtMyCompanyFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.rvCareer.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvCareer.setAdapter(new CareerAdapter(getActivity(), null));
+
+        CareerAdapter careerAdapter = new CareerAdapter(getActivity(), null);
+        careerAdapter.setClickListener(new ClickListener() {
+            @Override
+            public void onSelect(Object obj, View view, int position) {
+                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+            }
+        });
+        binding.rvCareer.setAdapter(careerAdapter);
     }
 }

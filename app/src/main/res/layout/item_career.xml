@@ -9,6 +9,7 @@
     android:layout_marginBottom="@dimen/_5sdp"
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="@dimen/_5sdp"
+    app:cardBackgroundColor="@color/white"
     app:cardElevation="@dimen/_2sdp">
 
 <androidx.appcompat.widget.LinearLayoutCompat
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_suitcase__12"
             android:text="@string/example_title_full_time"
+            android:textColor="@color/grey_60"
             android:textSize="@dimen/_8ssp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -44,11 +46,14 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@string/example_title_location"
             android:textSize="@dimen/_8ssp"
+
+            android:textColor="@color/grey_60"
             android:drawableStart="@drawable/ic_location_12"
             android:layout_below="@id/mtv_full_time"/>
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbtn_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

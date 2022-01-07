@@ -1,5 +1,6 @@
 package com.mycompanynew.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -18,6 +17,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.FragmentHomeBinding;
+import com.mycompanynew.interfaces.ClickListener;
+import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
 import com.mycompanynew.home.adapters.HomeSliderViewPageAdapter;
 import com.mycompanynew.home.adapters.OurServiceAdapter;
@@ -51,7 +52,21 @@ public class HomeFragment extends Fragment {
 
     private void setCurrentOpening() {
 
-        binding.vpCurrentOpening.setAdapter(new CurrentOpeningAdapter());
+        binding.mbtnCurrentOpeningViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+            }
+        });
+
+        CurrentOpeningAdapter currentOpeningAdapter = new CurrentOpeningAdapter();
+        currentOpeningAdapter.setClickListener(new ClickListener() {
+            @Override
+            public void onSelect(Object obj, View view, int position) {
+                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+            }
+        });
+        binding.vpCurrentOpening.setAdapter(currentOpeningAdapter);
         binding.vpCurrentOpening.setClipToPadding(false);
         binding.vpCurrentOpening.setClipChildren(false);
         binding.vpCurrentOpening.setOffscreenPageLimit(3);

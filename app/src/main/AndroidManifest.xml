@@ -11,7 +11,8 @@
         android:theme="@style/Theme.MyCompanyNew">
         <activity
             android:name=".our_services.activities.ProductDetailsActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".our_services.activities.ServicesDetailsActivity"
             android:exported="true"
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ApplyJobActivity"
+            android:name=".life_at_my_company.activities.ApplyJobActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

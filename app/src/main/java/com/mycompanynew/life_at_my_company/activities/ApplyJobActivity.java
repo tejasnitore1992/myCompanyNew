@@ -1,8 +1,10 @@
-package com.mycompanynew;
+package com.mycompanynew.life_at_my_company.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.mycompanynew.R;
 
 public class ApplyJobActivity extends AppCompatActivity {
 

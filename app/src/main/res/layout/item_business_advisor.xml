@@ -9,8 +9,11 @@
     app:cardBackgroundColor="@color/white">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/aciv_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
         app:srcCompat="@drawable/home_slide_baner"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"/>

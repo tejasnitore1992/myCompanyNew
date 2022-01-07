@@ -141,6 +141,7 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mbtn_current_opening_view_all"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

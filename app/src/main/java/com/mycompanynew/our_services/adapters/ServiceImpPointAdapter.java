@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mycompanynew.R;
 
 public class ServiceImpPointAdapter extends RecyclerView.Adapter<ServiceImpPointAdapter.MyViewHolder> {
+
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

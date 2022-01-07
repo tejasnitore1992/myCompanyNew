@@ -9,6 +9,7 @@
         <item name="android:actionMenuTextColor">@color/white</item>
         <item name="windowActionModeOverlay">true</item>
 
+        <item name="android:textColorHint">@color/grey_60</item>
     </style>
 
     <style name="BaseNoActionBarTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" />
@@ -25,6 +26,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="android:windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/colorPrimary</item>
+        <item name="android:textColorHint">@color/grey_60</item>
     </style>
 
     <style name="ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
