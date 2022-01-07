@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.FragmentHomeBinding;
+import com.mycompanynew.home.response.DashboardResponse;
 import com.mycompanynew.interfaces.ClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
 
         tools = new Tools(requireActivity());
         preferenceManager = new PreferenceManager(requireActivity());
+
         restCall = RestClient.createService(RestCall.class, preferenceManager.getBaseUrl(),
                 preferenceManager.getApiKey(),
                 preferenceManager.getUserName(),
@@ -175,11 +177,13 @@ public class HomeFragment extends Fragment {
     }
 
     public void getData(){
-        restCall.getDashboardData("getDashboardData", preferenceManager.getSocietyId(),
+        restCall.getDashboardData(
+                "getDashboardData",
+                preferenceManager.getSocietyId(),
                 preferenceManager.getLanguageId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.newThread())
-                .subscribe(new Subscriber<Object>() {
+                .subscribe(new Subscriber<DashboardResponse>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -189,17 +193,22 @@ public class HomeFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+
                             }
                         });
                     }
 
                     @Override
-                    public void onNext(Object response) {
+                    public void onNext(DashboardResponse response) {
 
                         requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
+                                if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
+                                    // code here
+                                } else {
+                                    // No data view
+                                }
                             }
                         });
                     }
