@@ -23,6 +23,14 @@ import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
 import com.mycompanynew.home.adapters.HomeSliderViewPageAdapter;
 import com.mycompanynew.home.adapters.OurServiceAdapter;
 import com.mycompanynew.home.adapters.OurServiceTextAdapter;
+import com.mycompanynew.network.RestCall;
+import com.mycompanynew.network.RestClient;
+import com.mycompanynew.utils.PreferenceManager;
+import com.mycompanynew.utils.Tools;
+import com.mycompanynew.utils.VariableBag;
+
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 
 public class HomeFragment extends Fragment {
@@ -30,14 +38,15 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeSliderViewPageAdapter homeSliderViewPageAdapter;
 
+    RestCall restCall;
+    Tools tools;
+    PreferenceManager preferenceManager;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
         return root;
     }
 
@@ -45,6 +54,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        tools = new Tools(requireActivity());
+        preferenceManager = new PreferenceManager(requireActivity());
+        restCall = RestClient.createService(RestCall.class, preferenceManager.getBaseUrl(),
+                preferenceManager.getApiKey(),
+                preferenceManager.getUserName(),
+                Tools.getCurrentPassword(preferenceManager.getSocietyId(),
+                        preferenceManager.getRegisteredUserId(),
+                        preferenceManager.getKeyValueString(VariableBag.USER_Mobile)));
         setHomeSlider();
         setOurService();
         setCurrentOpening();
@@ -104,7 +121,7 @@ public class HomeFragment extends Fragment {
                 R.drawable.our_service_banner,
                 R.drawable.our_service_banner,
                 R.drawable.our_service_banner};
-        binding.vpOurService.setAdapter(new OurServiceAdapter(imageList,binding.vpOurService));
+        binding.vpOurService.setAdapter(new OurServiceAdapter(imageList, binding.vpOurService));
         binding.vpOurService.setClipToPadding(false);
         binding.vpOurService.setClipChildren(false);
         binding.vpOurService.setOffscreenPageLimit(3);
@@ -155,5 +172,37 @@ public class HomeFragment extends Fragment {
             }
         });
         binding.indicator.attachToPager(binding.vpSlider);
+    }
+
+    public void getData(){
+        restCall.getDashboardData("getDashboardData", preferenceManager.getSocietyId(),
+                preferenceManager.getLanguageId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<Object>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(Object response) {
+
+                        requireActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            }
+                        });
+                    }
+                });
     }
 }
