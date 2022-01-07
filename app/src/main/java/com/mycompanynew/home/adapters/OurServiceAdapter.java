@@ -47,6 +47,7 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
                 .load(ourServicesItem.getCompanyServiceImage())
                 .placeholder(R.drawable.ic_refresh)
                 .error(R.drawable.ic_broken_image)
+                .centerCrop()
                 .into(holder.binding.roundedImageView);
 
         holder.binding.mtvTitle.setText(ourServicesItem.getCompanyServiceName());

@@ -3,27 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rounded_image_view"
-        app:riv_corner_radius="@dimen/_12sdp"
-        android:adjustViewBounds="true">
+    <RelativeLayout
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_centerHorizontal="true">
 
-    </com.makeramen.roundedimageview.RoundedImageView>
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rounded_image_view"
+            app:riv_corner_radius="@dimen/_12sdp"
+            android:scaleType="centerCrop"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Business Advisory"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="2"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_40sdp"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mtv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Business Advisory"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:outlineSpotShadowColor="@color/black"
+            android:shadowColor="@color/black"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/_20sdp" />
+
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

@@ -64,7 +64,7 @@
                 android:layout_alignParentEnd="true"
                 android:text="@string/btn_apply"
                 android:textColor="@color/white"
-                app:cornerRadius="@dimen/_15sdp"/>
+                app:cornerRadius="@dimen/_15sdp" />
 
         </RelativeLayout>
 

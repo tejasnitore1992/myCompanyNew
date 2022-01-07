@@ -16,8 +16,11 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.mycompanynew.R;
 import com.mycompanynew.databinding.FragmentHomeBinding;
+import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
+import com.mycompanynew.home.adapters.HomeSliderViewPageAdapter;
+import com.mycompanynew.home.adapters.OurServiceAdapter;
+import com.mycompanynew.home.adapters.OurServiceTextAdapter;
 import com.mycompanynew.home.response.AboutCompany;
 import com.mycompanynew.home.response.CurrentOpeningItem;
 import com.mycompanynew.home.response.DashboardResponse;
@@ -26,10 +29,6 @@ import com.mycompanynew.home.response.ServiceListItem;
 import com.mycompanynew.home.response.SliderItem;
 import com.mycompanynew.interfaces.ClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
-import com.mycompanynew.home.adapters.CurrentOpeningAdapter;
-import com.mycompanynew.home.adapters.HomeSliderViewPageAdapter;
-import com.mycompanynew.home.adapters.OurServiceAdapter;
-import com.mycompanynew.home.adapters.OurServiceTextAdapter;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
 import com.mycompanynew.utils.PreferenceManager;
@@ -104,7 +103,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        currentOpeningAdapter = new CurrentOpeningAdapter(getActivity(),currentOpening);
+        currentOpeningAdapter = new CurrentOpeningAdapter(getActivity(), currentOpening);
         currentOpeningAdapter.setClickListener(new ClickListener() {
             @Override
             public void onSelect(Object obj, View view, int position) {
@@ -144,7 +143,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setOurService() {
-        ourServiceAdapter = new OurServiceAdapter(getActivity(),ourServices, binding.vpOurService);
+        ourServiceAdapter = new OurServiceAdapter(getActivity(), ourServices, binding.vpOurService);
         binding.vpOurService.setAdapter(ourServiceAdapter);
         binding.vpOurService.setClipToPadding(false);
         binding.vpOurService.setClipChildren(false);
@@ -171,20 +170,20 @@ public class HomeFragment extends Fragment {
 //                sliderHandler.postDelayed(sliderRunnable, 2000); // slide duration 2 seconds
                 OurServicesItem ourServicesItem = ourServices.get(position);
                 servicePointList.clear();
-                if(ourServicesItem.getServiceList() != null)
+                if (ourServicesItem.getServiceList() != null)
                     servicePointList.addAll(ourServicesItem.getServiceList());
-                if(ourServiceTextAdapter != null)
+                if (ourServiceTextAdapter != null)
                     ourServiceTextAdapter.notifyDataSetChanged();
             }
         });
 
-        ourServiceTextAdapter = new OurServiceTextAdapter(getActivity(),servicePointList);
+        ourServiceTextAdapter = new OurServiceTextAdapter(getActivity(), servicePointList);
         binding.rvOurService.setAdapter(ourServiceTextAdapter);
 
     }
 
     private void setHomeSlider() {
-        homeSliderViewPageAdapter = new HomeSliderViewPageAdapter(getActivity(),slider);
+        homeSliderViewPageAdapter = new HomeSliderViewPageAdapter(getActivity(), slider);
         binding.vpSlider.setAdapter(homeSliderViewPageAdapter);
         binding.vpSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -205,7 +204,7 @@ public class HomeFragment extends Fragment {
         binding.indicator.attachToPager(binding.vpSlider);
     }
 
-    public void getData(){
+    public void getData() {
         restCall.getDashboardData(
                 "getDashboardData",
                 preferenceManager.getSocietyId(),
@@ -257,7 +256,7 @@ public class HomeFragment extends Fragment {
 
         slider.clear();
         slider.addAll(response.getSlider());
-        if(homeSliderViewPageAdapter != null)
+        if (homeSliderViewPageAdapter != null)
             homeSliderViewPageAdapter.notifyDataSetChanged();
 
         AboutCompany aboutCompany = response.getAboutCompany();
@@ -266,10 +265,10 @@ public class HomeFragment extends Fragment {
 
         ourServices.clear();
         ourServices.addAll(response.getOurServices());
-        if(ourServiceAdapter != null)
+        if (ourServiceAdapter != null)
             ourServiceAdapter.notifyDataSetChanged();
 
-        if(!ourServices.isEmpty()) {
+        if (!ourServices.isEmpty()) {
             OurServicesItem ourServicesItem = ourServices.get(0);
             servicePointList.clear();
             if (ourServicesItem.getServiceList() != null)
@@ -278,9 +277,21 @@ public class HomeFragment extends Fragment {
                 ourServiceTextAdapter.notifyDataSetChanged();
         }
 
+        if (!ourServices.isEmpty()) {
+            binding.llcOurServices.setVisibility(View.VISIBLE);
+        } else {
+            binding.llcOurServices.setVisibility(View.GONE);
+        }
+
         currentOpening.clear();
         currentOpening.addAll(response.getCurrentOpening());
-        if(currentOpeningAdapter != null)
+        if (currentOpeningAdapter != null)
             currentOpeningAdapter.notifyDataSetChanged();
+
+        if (!currentOpening.isEmpty()) {
+            binding.llcCurrentOpening.setVisibility(View.VISIBLE);
+        } else {
+            binding.llcCurrentOpening.setVisibility(View.GONE);
+        }
     }
 }

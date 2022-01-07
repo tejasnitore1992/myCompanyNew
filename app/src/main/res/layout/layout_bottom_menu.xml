@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llc_bottom_menu"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_50sdp"
+    android:layout_height="@dimen/_55sdp"
     android:background="@drawable/background_bottom_menu"
     android:gravity="center"
     android:layout_gravity="bottom">
@@ -27,24 +27,22 @@
             app:srcCompat="@drawable/ic_home_b" />
 
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/home_select"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_34sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:cardElevation="0dp">
+            android:background="@drawable/bottom_menu_select">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 app:srcCompat="@drawable/ic_home_b"
                 app:tint="@color/colorPrimary" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -70,25 +68,23 @@
             app:srcCompat="@drawable/ic_phone_call_b" />
 
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/phone_call_select"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_34sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:cardElevation="0dp">
+            android:background="@drawable/bottom_menu_select">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 app:srcCompat="@drawable/ic_phone_call_b"
                 app:tint="@color/colorPrimary" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -114,25 +110,23 @@
             app:srcCompat="@drawable/ic_service_b" />
 
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/service_select"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_34sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:cardElevation="0dp">
+            android:background="@drawable/bottom_menu_select">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 app:srcCompat="@drawable/ic_service_b"
                 app:tint="@color/colorPrimary" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -150,30 +144,31 @@
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_centerInParent="true"
-            android:layout_margin="@dimen/_3sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
             android:visibility="visible"
             app:srcCompat="@drawable/ic_client_b" />
 
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/client_select"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_34sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:cardElevation="0dp">
+            android:background="@drawable/bottom_menu_select">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 app:srcCompat="@drawable/ic_client_b"
                 app:tint="@color/colorPrimary" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -196,25 +191,23 @@
             app:srcCompat="@drawable/ic_no_vacancy_b" />
 
 
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
             android:id="@+id/no_vacancy_select"
-            android:layout_width="@dimen/_34sdp"
-            android:layout_height="@dimen/_34sdp"
+            android:layout_width="@dimen/_38sdp"
+            android:layout_height="@dimen/_38sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_25sdp"
-            app:cardElevation="0dp">
+            android:background="@drawable/bottom_menu_select">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 app:srcCompat="@drawable/ic_no_vacancy_b"
                 app:tint="@color/colorPrimary" />
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
     </RelativeLayout>
 

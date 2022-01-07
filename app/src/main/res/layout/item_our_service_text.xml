@@ -2,7 +2,6 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
     android:orientation="horizontal">
@@ -10,7 +9,9 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/_10sdp"
         android:layout_height="@dimen/_10sdp"
-        app:srcCompat="@drawable/ic_circle_check" />
+        android:layout_marginTop="@dimen/_3sdp"
+        app:srcCompat="@drawable/ic_circle_check"
+        app:tint="@color/colorPrimary"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/mtv_service_point"
