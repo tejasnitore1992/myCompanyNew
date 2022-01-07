@@ -28,7 +28,7 @@ public class HolidayAdapterDemo extends RecyclerView.Adapter<HolidayAdapterDemo.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        // binding.rootLayout
+        // holder.binding.rootLayout
     }
 
     @Override
@@ -41,7 +41,6 @@ public class HolidayAdapterDemo extends RecyclerView.Adapter<HolidayAdapterDemo.
         private ItemCareerBinding binding;
         public ViewHolder(@NonNull ItemCareerBinding binding) {
             super(binding.getRoot());
-            this.binding = binding;
         }
     }
 
