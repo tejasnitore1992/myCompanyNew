@@ -9,7 +9,7 @@ import rx.Single;
 public interface RestCall {
 
     @FormUrlEncoded
-    @POST("kbg_controller.php")
+    @POST("front_dashboard_controller.php")
     Single<Object> getDashboardData(
             @Field("getDashboardData") String getDashboardData,
             @Field("society_id") String society_id,
