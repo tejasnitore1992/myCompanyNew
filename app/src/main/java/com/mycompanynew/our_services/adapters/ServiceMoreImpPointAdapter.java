@@ -8,39 +8,37 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mycompanynew.R;
 import com.mycompanynew.databinding.ItemOurServiceTextBinding;
-import com.mycompanynew.our_services.response.ServiceDetailsItem;
+import com.mycompanynew.our_services.response.DataServiceDetailsMoreItem;
 
 import java.util.List;
 
-public class ServiceImpPointAdapter extends RecyclerView.Adapter<ServiceImpPointAdapter.MyViewHolder> {
+public class ServiceMoreImpPointAdapter extends RecyclerView.Adapter<ServiceMoreImpPointAdapter.MyViewHolder> {
 
     private Context context;
-    public List<ServiceDetailsItem> serviceDetailsItemList;
+    private List<DataServiceDetailsMoreItem> detailsMoreItemList;
 
-    public ServiceImpPointAdapter(Context context, List<ServiceDetailsItem> serviceDetailsItemList) {
+    public ServiceMoreImpPointAdapter(Context context, List<DataServiceDetailsMoreItem> detailsMoreItemList) {
         this.context = context;
-        this.serviceDetailsItemList = serviceDetailsItemList;
+        this.detailsMoreItemList = detailsMoreItemList;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemOurServiceTextBinding binding = ItemOurServiceTextBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
-        return new ServiceImpPointAdapter.MyViewHolder(binding);
+        return new ServiceMoreImpPointAdapter.MyViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ServiceDetailsItem serviceDetailsItem = serviceDetailsItemList.get(position);
-
-        holder.binding.mtvServicePoint.setText(serviceDetailsItem.getCompanyServiceDetailListName());
+        DataServiceDetailsMoreItem moreItem = detailsMoreItemList.get(position);
+        holder.binding.mtvServicePoint.setText(moreItem.getCompanyServiceMoreDetailListName());
     }
 
     @Override
     public int getItemCount() {
-        return serviceDetailsItemList.size();
+        return detailsMoreItemList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

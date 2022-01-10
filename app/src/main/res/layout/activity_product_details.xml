@@ -2,10 +2,10 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPageBackground"
-    android:id="@+id/coordinator"
     tools:context=".our_services.activities.ProductDetailsActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -14,82 +14,107 @@
         android:orientation="vertical">
 
         <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/material_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
-            app:navigationIconTint="@color/white"
             app:navigationIcon="@drawable/ic_back_arrow"
-            app:titleTextColor="@color/white"
+            app:navigationIconTint="@color/white"
+            app:title="Strategy Consultant"
             app:titleCentered="true"
-            app:title="Strategy Consultant"/>
+            app:titleTextColor="@color/white" />
 
-        <androidx.core.widget.NestedScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never">
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nested_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="@dimen/_1sdp"
+                        app:cardPreventCornerOverlap="false"
+                        app:cardUseCompatPadding="true">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/aciv_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_140sdp"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/banner_people" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="Lorem Ipsum is Simply"
+                        android:textColor="@color/textPrimaryColor"
+                        android:textSize="@dimen/_16ssp"
+                        android:textStyle="bold" />
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mtv_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:text="@string/description_my_company"
+                        android:textColor="@color/grey_40"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:nestedScrollingEnabled="false"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/item_our_service_text" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="@dimen/_10sdp">
-
-
-                <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_2sdp"
-                app:cardCornerRadius="@dimen/_8sdp"
-                app:cardElevation="@dimen/_1sdp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:minHeight="@dimen/_150sdp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/banner_people" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/ll_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="Lorem Ipsum is Simply"
-                android:textColor="@color/textPrimaryColor"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
-
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
                 <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/mtv_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:text="@string/description_my_company"
-                    android:textColor="@color/grey_40"
-                    android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_point"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="4"
-                    tools:listitem="@layout/item_our_service_text"/>
+                    android:textColor="@color/grey_60"
+                    android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

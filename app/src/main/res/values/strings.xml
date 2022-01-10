@@ -12,8 +12,8 @@
     <string name="btn_view_all">View All</string>
     <string name="btn_login">Login</string>
 
-
-    <string name="title_upload_resume">Upload Resume* (Word &amp; PDF Only | Limit: 2MB)</string>
+<!--Word &amp;-->
+    <string name="title_upload_resume">Upload Resume* ( PDF Only | Limit: 2MB)</string>
     <string name="title_educational_information_star">Eductional Information*</string>
     <string name="title_number">Number</string>
     <string name="title_male">Male</string>
@@ -44,6 +44,7 @@ When an unknown printer took a galley of type &amp; scrambled it to make a type 
     <string name="hint_message">Message</string>
     <string name="hint_date_of_birth_star">Date of birth*</string>
     <string name="hint_gender_star">Gender*</string>
+    <string name="hint_state_star">State*</string>
     <string name="hint_city_star">City*</string>
     <string name="hint_contact_no_star">Contact No*</string>
     <string name="hint_email_id_star">Email Id*</string>
@@ -62,6 +63,23 @@ When an unknown printer took a galley of type &amp; scrambled it to make a type 
         <item>State</item>
 
     </string-array>
+
+    <string-array name="apply_experience_array">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>10+</item>
+
+    </string-array>
+
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

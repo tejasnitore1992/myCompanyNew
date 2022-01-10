@@ -9,24 +9,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textview.MaterialTextView;
-import com.mycompanynew.R;
 import com.mycompanynew.databinding.ItemCareerBinding;
 import com.mycompanynew.interfaces.ClickListener;
+import com.mycompanynew.life_at_my_company.response.CurrentOpeningItem;
 
 import java.util.List;
 
 public class CareerAdapter extends RecyclerView.Adapter<CareerAdapter.MyViewHolder> {
 
     private Context context;
-    public List<Object> objectList;
+    public List<CurrentOpeningItem> itemList;
 
     private ClickListener clickListener;
 
-    public CareerAdapter(Context context, List<Object> objectList) {
+    public CareerAdapter(Context context, List<CurrentOpeningItem> itemList) {
         this.context = context;
-        this.objectList = objectList;
+        this.itemList = itemList;
     }
 
     public void setClickListener(ClickListener clickListener) {
@@ -42,7 +40,10 @@ public class CareerAdapter extends RecyclerView.Adapter<CareerAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
+        CurrentOpeningItem openingItem = itemList.get(position);
+        holder.binding.mtvTitle.setText(openingItem.getCompanyCurrentOpeningTitle());
+        holder.binding.mtvTime.setText(String.format("  %s",openingItem.getCompanyCurrentOpeningTiming()));
+        holder.binding.mtvLocation.setText(String.format("  %s",openingItem.getCompanyCurrentOpeningAddress()));
         holder.binding.mbtnApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +55,7 @@ public class CareerAdapter extends RecyclerView.Adapter<CareerAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return 3;
+        return itemList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
