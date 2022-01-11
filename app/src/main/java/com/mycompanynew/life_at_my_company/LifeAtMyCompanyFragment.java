@@ -21,6 +21,7 @@ import com.mycompanynew.life_at_my_company.response.CurrentOpeningItem;
 import com.mycompanynew.life_at_my_company.response.CurrentOpeningResponse;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
+import com.mycompanynew.utils.IntentData;
 import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
 import com.mycompanynew.utils.VariableBag;
@@ -84,7 +85,11 @@ public class LifeAtMyCompanyFragment extends Fragment {
         careerAdapter.setClickListener(new ClickListener() {
             @Override
             public void onSelect(Object obj, View view, int position) {
-                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+
+                CurrentOpeningItem openingItem = (CurrentOpeningItem) obj;
+                Intent intent = new Intent(getActivity(), ApplyJobActivity.class);
+                intent.putExtra(IntentData.INTENT_CURRENT_OPENING_ITEM,openingItem);
+                startActivity(intent);
             }
         });
         binding.rvCareer.setAdapter(careerAdapter);

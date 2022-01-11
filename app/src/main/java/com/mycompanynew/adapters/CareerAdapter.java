@@ -48,7 +48,7 @@ public class CareerAdapter extends RecyclerView.Adapter<CareerAdapter.MyViewHold
             @Override
             public void onClick(View view) {
                 if(clickListener != null)
-                    clickListener.onSelect(null,view,position);
+                    clickListener.onSelect(openingItem,view,position);
             }
         });
     }

@@ -10,6 +10,7 @@ import com.mycompanynew.our_services.response.ServiceDetailMoreResponse;
 import com.mycompanynew.our_services.response.ServicesDetailsResponse;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
@@ -67,19 +68,21 @@ public interface RestCall {
     @Multipart
     @POST("current_opening_controller.php")
     Single<ApplyOpeningResponse> applyOpening(
-            @Part("applyOpening") String applyOpening,
-            @Part("society_id") String society_id,
-            @Part("language_id") String language_id,
-            @Part("company_current_opening_id") String company_current_opening_id,
-            @Part("company_current_opening_name") String company_current_opening_name,
-            @Part("company_current_opening_dob") String company_current_opening_dob,
-            @Part("company_current_opening_gender") String company_current_opening_gender,
-            @Part("company_current_opening_state") String company_current_opening_state,
-            @Part("company_current_opening_city") String company_current_opening_city,
-            @Part("company_current_opening_contact_no") String a,
-            @Part("company_current_opening_email_id") String company_current_opening_email_id,
-            @Part("company_current_opening_education_info") String company_current_opening_education_info,
-            @Part("company_current_opening_experience") String company_current_opening_experience,
-            @Part("company_current_opening_resume") MultipartBody.Part company_current_opening_resume);
+            @Part("applyOpening") RequestBody applyOpening,
+            @Part("society_id") RequestBody society_id,
+            @Part("language_id") RequestBody language_id,
+            @Part("company_current_opening_id") RequestBody company_current_opening_id,
+            @Part("company_current_opening_name") RequestBody company_current_opening_name,
+            @Part("company_current_opening_dob") RequestBody company_current_opening_dob,
+            @Part("company_current_opening_gender") RequestBody company_current_opening_gender,
+            @Part("company_current_opening_state") RequestBody company_current_opening_state,
+            @Part("company_current_opening_city") RequestBody company_current_opening_city,
+            @Part("company_current_opening_contact_no") RequestBody company_current_opening_contact_no,
+            @Part("company_current_opening_email_id") RequestBody company_current_opening_email_id,
+            @Part("company_current_opening_education_info") RequestBody company_current_opening_education_info,
+            @Part("company_current_opening_experience") RequestBody company_current_opening_experience,
+            @Part MultipartBody.Part company_current_opening_resume);
 
+//,
+//
 }
