@@ -19,6 +19,7 @@
             android:id="@+id/mtv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/textBackground"
             android:text="Business Advisory"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
@@ -29,7 +30,7 @@
             android:shadowRadius="5"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/_20sdp" />
+            android:layout_marginBottom="@dimen/_14sdp" />
 
     </RelativeLayout>
 

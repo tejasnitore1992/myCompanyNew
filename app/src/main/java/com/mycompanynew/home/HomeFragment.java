@@ -1,5 +1,6 @@
 package com.mycompanynew.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -28,9 +31,11 @@ import com.mycompanynew.home.response.OurServicesItem;
 import com.mycompanynew.home.response.ServiceListItem;
 import com.mycompanynew.home.response.SliderItem;
 import com.mycompanynew.interfaces.ClickListener;
+import com.mycompanynew.interfaces.HomeButtonClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
+import com.mycompanynew.utils.IntentData;
 import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
 import com.mycompanynew.utils.VariableBag;
@@ -59,6 +64,15 @@ public class HomeFragment extends Fragment {
     private RestCall restCall;
     private Tools tools;
     private PreferenceManager preferenceManager;
+
+    private HomeButtonClickListener homeButtonClickListener;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof HomeButtonClickListener)
+        this.homeButtonClickListener = (HomeButtonClickListener) context;
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -100,6 +114,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+                if(homeButtonClickListener != null)
+                    homeButtonClickListener.clickOnViewAllCurrentOpening(view);
             }
         });
 
@@ -107,19 +123,27 @@ public class HomeFragment extends Fragment {
         currentOpeningAdapter.setClickListener(new ClickListener() {
             @Override
             public void onSelect(Object obj, View view, int position) {
-                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
+
+                CurrentOpeningItem openingItem = (CurrentOpeningItem) obj;
+                Intent intent = new Intent(getActivity(), ApplyJobActivity.class);
+                intent.putExtra(IntentData.INTENT_CURRENT_OPENING_ITEM,openingItem);
+//                startActivity(intent);
             }
         });
-        binding.vpCurrentOpening.setAdapter(currentOpeningAdapter);
-        binding.vpCurrentOpening.setClipToPadding(false);
-        binding.vpCurrentOpening.setClipChildren(false);
-        binding.vpCurrentOpening.setOffscreenPageLimit(3);
-        binding.vpCurrentOpening.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
-//        SnapHelper snapHelper = new PagerSnapHelper();
-//        snapHelper.attachToRecyclerView(binding.rvCareer);
+        binding.rvCurrentOpening.setAdapter(currentOpeningAdapter);
+        SnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(binding.rvCurrentOpening);
 
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+//        binding.vpCurrentOpening.setAdapter(currentOpeningAdapter);
+//        binding.vpCurrentOpening.setClipToPadding(false);
+//        binding.vpCurrentOpening.setClipChildren(false);
+//        binding.vpCurrentOpening.setOffscreenPageLimit(3);
+//        binding.vpCurrentOpening.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+
+
+       /* CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
             @Override
@@ -139,10 +163,19 @@ public class HomeFragment extends Fragment {
 //                sliderHandler.removeCallbacks(sliderRunnable);
 //                sliderHandler.postDelayed(sliderRunnable, 2000); // slide duration 2 seconds
             }
-        });
+        });*/
     }
 
     private void setOurService() {
+
+        binding.mbtnOurServiceViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(homeButtonClickListener != null)
+                    homeButtonClickListener.clickOnViewAllOurService(view);
+            }
+        });
+
         ourServiceAdapter = new OurServiceAdapter(getActivity(), ourServices, binding.vpOurService);
         binding.vpOurService.setAdapter(ourServiceAdapter);
         binding.vpOurService.setClipToPadding(false);

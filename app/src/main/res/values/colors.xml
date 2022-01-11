@@ -31,4 +31,8 @@
 
     <color name="colorLoginButton">#EDA400</color>
 
+    <color name="colorEditBoxBorder">#DCDCDC</color>
+    <color name="textBackground">#20000000</color>
+    <color name="colorButtonSubmit">#F36766</color>
+    <color name="colorHorizontalLine">#000000</color>
 </resources>

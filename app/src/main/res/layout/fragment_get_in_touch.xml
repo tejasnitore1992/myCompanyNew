@@ -21,7 +21,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
-                app:navigationIcon="@drawable/ic_back_arrow"
                 app:titleTextColor="@color/white"
                 app:title="@string/toolbar_title_get_in_touch"
                 app:titleCentered="true"/>
@@ -88,7 +87,7 @@
                     android:layout_height="@dimen/_1sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@android:color/darker_gray"/>
+                    android:background="@color/colorEditBoxBorder"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -136,6 +135,7 @@
                     android:layout_height="wrap_content"
                     app:boxBackgroundColor="@color/white"
                     android:hint="@string/hint_name"
+                    app:boxStrokeColor="@color/text_input_layout_border_color"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -150,6 +150,8 @@
                     app:boxBackgroundColor="@color/white"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/hint_number"
+                    app:boxStrokeWidth="@dimen/_1sdp"
+                    app:boxStrokeColor="@color/text_input_layout_border_color"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -164,6 +166,7 @@
                     app:boxBackgroundColor="@color/white"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/hint_email"
+                    app:boxStrokeColor="@color/text_input_layout_border_color"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -178,6 +181,7 @@
                     app:boxBackgroundColor="@color/white"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:hint="@string/hint_message"
+                    app:boxStrokeColor="@color/text_input_layout_border_color"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -199,6 +203,7 @@
                     android:paddingBottom="@dimen/_10sdp"
                     android:paddingTop="@dimen/_10sdp"
                     app:cornerRadius="@dimen/_45sdp"
+                    app:backgroundTint="@color/colorButtonSubmit"
                     android:layout_gravity="center_horizontal"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>

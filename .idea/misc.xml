@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/bottom_menu_select.xml" value="0.2635416666666667" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/ic_graphic_get_in_touch.xml" value="0.2635416666666667" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/ic_login.xml" value="0.2635416666666667" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/drawable/text_input_layout_stroke_color.xml" value="0.2635416666666667" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_apply_job.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_get_in_touch.xml" value="0.264" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_life_at_my_company.xml" value="0.24739583333333334" />
@@ -12,6 +14,7 @@
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_product_details.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/activity_services_details.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_about_us.xml" value="0.24739583333333334" />
+        <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_get_in_touch.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_home.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_life_at_my_company.xml" value="0.24739583333333334" />
         <entry key="..\:/UnitgloSolution-2021-12-28/Fincasys/MyCompanyNew/app/src/main/res/layout/fragment_our_services.xml" value="0.12552083333333333" />

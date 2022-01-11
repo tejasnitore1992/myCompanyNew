@@ -2,7 +2,9 @@ package com.mycompanynew.home.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CurrentOpeningItem{
+import java.io.Serializable;
+
+public class CurrentOpeningItem implements Serializable {
 
 	@SerializedName("company_current_opening_address")
 	private String companyCurrentOpeningAddress;

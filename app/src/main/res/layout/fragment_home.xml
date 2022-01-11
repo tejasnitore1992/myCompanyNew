@@ -118,14 +118,15 @@
                                     android:layout_centerVertical="true"
                                     android:text="@string/btn_view_all"
                                     android:textAllCaps="false"
-                                    android:textSize="@dimen/_10ssp"/>
+                                    android:textSize="@dimen/_10ssp" />
                             </RelativeLayout>
+
 
 
                             <androidx.viewpager2.widget.ViewPager2
                                 android:id="@+id/vp_our_service"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="@dimen/_170sdp"
                                 android:paddingStart="@dimen/_70sdp"
                                 android:paddingEnd="@dimen/_70sdp" />
 
@@ -135,6 +136,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginTop="@dimen/_20sdp"
                                 android:layout_marginEnd="@dimen/_15sdp"
                                 android:nestedScrollingEnabled="false"
                                 android:orientation="vertical"
@@ -174,6 +176,7 @@
                                     style="@style/Widget.MaterialComponents.Button.TextButton"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_2sdp"
                                     android:layout_alignParentEnd="true"
                                     android:layout_centerVertical="true"
                                     android:text="@string/btn_view_all"
@@ -186,8 +189,20 @@
                                 android:id="@+id/vp_current_opening"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:visibility="gone"
                                 android:paddingStart="@dimen/_35sdp"
                                 android:paddingEnd="@dimen/_35sdp" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_current_opening"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingStart="@dimen/_12sdp"
+                                android:paddingEnd="@dimen/_14sdp"
+                                android:orientation="horizontal"
+                                android:clipToPadding="false"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/item_current_opening"/>
 
 
                         </androidx.appcompat.widget.LinearLayoutCompat>

@@ -13,10 +13,11 @@ import com.mycompanynew.about_us.AboutUsFragment;
 import com.mycompanynew.databinding.ActivityMainBinding;
 import com.mycompanynew.get_in_touch.GetInTouchFragment;
 import com.mycompanynew.home.HomeFragment;
+import com.mycompanynew.interfaces.HomeButtonClickListener;
 import com.mycompanynew.life_at_my_company.LifeAtMyCompanyFragment;
 import com.mycompanynew.our_services.OurServicesFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeButtonClickListener {
     //implements NavigationBarView.OnItemSelectedListener
     private ActivityMainBinding binding;
 
@@ -186,5 +187,26 @@ public class MainActivity extends AppCompatActivity {
         binding.llcBottomMenu.serviceUnselect.setVisibility(View.VISIBLE);
         binding.llcBottomMenu.clientUnselect.setVisibility(View.VISIBLE);
         binding.llcBottomMenu.noVacancyUnselect.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void clickOnViewAllOurService(View view) {
+        unSelectMenu();
+        selectedBottomId = binding.llcBottomMenu.rlService.getId();
+        binding.llcBottomMenu.serviceUnselect.setVisibility(View.GONE);
+        binding.llcBottomMenu.serviceSelect.setVisibility(View.VISIBLE);
+        Fragment fragment = new OurServicesFragment();
+        addFragment(fragment, "");
+    }
+
+    @Override
+    public void clickOnViewAllCurrentOpening(View view) {
+        unSelectMenu();
+        selectedBottomId = binding.llcBottomMenu.rlNoVacancy.getId();
+        binding.llcBottomMenu.noVacancyUnselect.setVisibility(View.GONE);
+        binding.llcBottomMenu.noVacancySelect.setVisibility(View.VISIBLE);
+        Fragment fragment = new LifeAtMyCompanyFragment();
+        addFragment(fragment, "");
+
     }
 }
