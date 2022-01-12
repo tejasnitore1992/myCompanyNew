@@ -41,9 +41,9 @@ public class CircularViewPagerHandler implements ViewPager.OnPageChangeListener 
     private void handleSetNextItem() {
         final int lastPosition = mViewPager.getAdapter().getCount() - 1;
         if(mCurrentPosition == 0) {
-            mViewPager.setCurrentItem(lastPosition, true);
+            mViewPager.setCurrentItem(lastPosition, false);
         } else if(mCurrentPosition == lastPosition) {
-            mViewPager.setCurrentItem(0, true);
+            mViewPager.setCurrentItem(0, false);
         }
     }
 

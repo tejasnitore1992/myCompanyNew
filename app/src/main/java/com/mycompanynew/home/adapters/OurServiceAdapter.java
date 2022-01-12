@@ -1,5 +1,6 @@
 package com.mycompanynew.home.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.mycompanynew.R;
 import com.mycompanynew.databinding.ItemOurServiceBinding;
 import com.mycompanynew.home.response.OurServicesItem;
+import com.mycompanynew.interfaces.ClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +26,16 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
     private Context context;
     private List<OurServicesItem> ourServices;
     private ViewPager2 viewPager2;
+    private ClickListener clickListener;
 
     public OurServiceAdapter(Context context, List<OurServicesItem> ourServices, ViewPager2 viewPager2) {
         this.context = context;
         this.ourServices = ourServices;
         this.viewPager2 = viewPager2;
+    }
+
+    public void setClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -40,7 +47,7 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         OurServicesItem ourServicesItem = ourServices.get(position);
 
         Glide.with(context)
@@ -51,6 +58,14 @@ public class OurServiceAdapter extends RecyclerView.Adapter<OurServiceAdapter.My
                 .into(holder.binding.roundedImageView);
 
         holder.binding.mtvTitle.setText(ourServicesItem.getCompanyServiceName());
+        holder.binding.rlService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(clickListener != null)
+                    clickListener.onSelect(ourServicesItem,view,position);
+            }
+        });
+
 //        holder.binding.roundedImageView.setImageResource(imageList[position]);
 //        if (position == imageList.length - 2){
 //            viewPager2.post(runnable);

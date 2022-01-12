@@ -36,8 +36,10 @@ import com.mycompanynew.interfaces.HomeButtonClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
+import com.mycompanynew.our_services.activities.ServicesDetailsActivity;
 import com.mycompanynew.utils.CircularViewPagerHandler;
 import com.mycompanynew.utils.IntentData;
+import com.mycompanynew.utils.IntentKey;
 import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
 import com.mycompanynew.utils.VariableBag;
@@ -71,7 +73,7 @@ public class HomeFragment extends Fragment {
 
     private Handler handlerTopSlider = new Handler();
     private Runnable runnableTopSlider;
-    private final long interval = 4000;
+    private final long interval = 6000;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -191,6 +193,16 @@ public class HomeFragment extends Fragment {
         });
 
         ourServiceAdapter = new OurServiceAdapter(getActivity(), ourServices, binding.vpOurService);
+        ourServiceAdapter.setClickListener(new ClickListener() {
+            @Override
+            public void onSelect(Object obj, View view, int position) {
+                OurServicesItem ourServicesItem = (OurServicesItem) obj;
+                Intent intent = new Intent(getActivity(), ServicesDetailsActivity.class);
+                intent.putExtra(IntentKey.COMPANY_SERVICE_ID,ourServicesItem.getCompanyServiceId());
+                intent.putExtra(IntentKey.COMPANY_SERVICE_NAME,ourServicesItem.getCompanyServiceName());
+                startActivity(intent);
+            }
+        });
         binding.vpOurService.setAdapter(ourServiceAdapter);
         binding.vpOurService.setClipToPadding(false);
         binding.vpOurService.setClipChildren(false);
@@ -248,14 +260,21 @@ public class HomeFragment extends Fragment {
 
             }
         });*/
-        binding.vpSlider.addOnPageChangeListener(new CircularViewPagerHandler(binding.vpSlider));
+        binding.vpSlider.addOnPageChangeListener(new CircularViewPagerHandler(binding.vpSlider){
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+//                handlerTopSlider.removeCallbacksAndMessages(null);
+//                handlerTopSlider.postDelayed(runnableTopSlider, interval);
+            }
+        });
         binding.indicator.attachToPager(binding.vpSlider);
 
         runnableTopSlider = new Runnable() {
             @Override
             public void run() {
                 if (binding.vpSlider.getCurrentItem() == (slider.size() - 1))
-                    binding.vpSlider.setCurrentItem(0, true);
+                    binding.vpSlider.setCurrentItem(0, false);
                 else
                     binding.vpSlider.setCurrentItem(binding.vpSlider.getCurrentItem() + 1, true);
                 handlerTopSlider.postDelayed(runnableTopSlider, interval);

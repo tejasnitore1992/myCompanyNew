@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
@@ -29,8 +28,8 @@
 
         <RelativeLayout
             android:id="@+id/home_select"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:background="@drawable/bottom_menu_select">
@@ -51,7 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
@@ -70,8 +68,8 @@
 
         <RelativeLayout
             android:id="@+id/phone_call_select"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
@@ -93,7 +91,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
@@ -112,8 +109,8 @@
 
         <RelativeLayout
             android:id="@+id/service_select"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
@@ -135,7 +132,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
@@ -154,8 +150,8 @@
 
         <RelativeLayout
             android:id="@+id/client_select"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"
@@ -177,7 +173,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_weight="1"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
@@ -193,8 +188,8 @@
 
         <RelativeLayout
             android:id="@+id/no_vacancy_select"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_centerInParent="true"
             android:layout_margin="@dimen/_1sdp"
             android:visibility="gone"

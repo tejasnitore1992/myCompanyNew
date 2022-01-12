@@ -158,7 +158,7 @@
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_marginStart="@dimen/_17sdp"
                                 android:layout_marginTop="@dimen/_20sdp"
                                 android:layout_marginEnd="@dimen/_15sdp">
 
@@ -199,7 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:clipToPadding="false"
                                 android:orientation="horizontal"
-                                android:paddingStart="@dimen/_12sdp"
+                                android:paddingStart="@dimen/_13sdp"
                                 android:paddingEnd="@dimen/_14sdp"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 tools:listitem="@layout/item_current_opening" />
