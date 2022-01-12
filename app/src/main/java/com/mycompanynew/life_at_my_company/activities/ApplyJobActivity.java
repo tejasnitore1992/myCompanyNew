@@ -31,6 +31,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.mycompanynew.R;
@@ -193,7 +194,68 @@ public class ApplyJobActivity extends AppCompatActivity {
             currentOpeningItemList.add(openingItem);
             if(spinnerPositionArrayAdapter != null)
                 spinnerPositionArrayAdapter.notifyDataSetChanged();
+        }else{
+            getData();
         }
+    }
+
+    public void getData() {
+
+        restCall.getCurrentOpeningData(
+                "getCurrentOpening",
+                preferenceManager.getSocietyId(),
+                preferenceManager.getLanguageId())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
+                .subscribe(new Subscriber<CurrentOpeningResponse>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                Toast.makeText(context,"Something went wrong!!!",Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onNext(CurrentOpeningResponse response) {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
+                                    // code here
+
+
+                                    setData(response);
+                                } else {
+                                    // No data view
+                                   Toast.makeText(context,"Something went wrong!!!",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+                    }
+                });
+    }
+
+    private void setData(CurrentOpeningResponse response) {
+        currentOpeningItemList.clear();
+        CurrentOpeningItem item = new CurrentOpeningItem();
+        item.setCompanyCurrentOpeningId("-1");
+        item.setCompanyCurrentOpeningTitle("-- Select Position --");
+        item.setCompanyCurrentOpeningPosition("");
+        item.setCompanyCurrentOpeningAddress("");
+        item.setCompanyCurrentOpeningTiming("");
+        currentOpeningItemList.add(item);
+        currentOpeningItemList.addAll(response.getOpeningItemList());
+        if(spinnerPositionArrayAdapter != null)
+            spinnerPositionArrayAdapter.notifyDataSetChanged();
     }
 
     private void fieldValidation() {
@@ -227,6 +289,7 @@ public class ApplyJobActivity extends AppCompatActivity {
         if(selectedOpening.getCompanyCurrentOpeningId() == null || Integer.parseInt(selectedOpening.getCompanyCurrentOpeningId()) < 1){
             Toast.makeText(context,"Please select position!!!",Toast.LENGTH_LONG).show();
             binding.acsPosition.requestFocus();
+            binding.scrollView.fullScroll(ScrollView.FOCUS_UP);
         }else if(TextUtils.isEmpty(name)){
 
             Toast.makeText(context,"Please entre name!!!",Toast.LENGTH_LONG).show();

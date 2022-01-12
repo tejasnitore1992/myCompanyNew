@@ -53,7 +53,7 @@ public class CurrentOpeningAdapter extends RecyclerView.Adapter<CurrentOpeningAd
             @Override
             public void onClick(View view) {
                 if(clickListener != null)
-                    clickListener.onSelect(null,view,position);
+                    clickListener.onSelect(item,view,position);
             }
         });
     }

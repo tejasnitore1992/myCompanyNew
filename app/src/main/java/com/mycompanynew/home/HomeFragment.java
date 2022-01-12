@@ -3,6 +3,7 @@ package com.mycompanynew.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ import com.mycompanynew.interfaces.HomeButtonClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
+import com.mycompanynew.utils.CircularViewPagerHandler;
 import com.mycompanynew.utils.IntentData;
 import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
@@ -67,11 +69,15 @@ public class HomeFragment extends Fragment {
 
     private HomeButtonClickListener homeButtonClickListener;
 
+    private Handler handlerTopSlider = new Handler();
+    private Runnable runnableTopSlider;
+    private final long interval = 4000;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if(context instanceof HomeButtonClickListener)
-        this.homeButtonClickListener = (HomeButtonClickListener) context;
+        if (context instanceof HomeButtonClickListener)
+            this.homeButtonClickListener = (HomeButtonClickListener) context;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -114,7 +120,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 //                startActivity(new Intent(getActivity(), ApplyJobActivity.class));
-                if(homeButtonClickListener != null)
+                if (homeButtonClickListener != null)
                     homeButtonClickListener.clickOnViewAllCurrentOpening(view);
             }
         });
@@ -126,8 +132,16 @@ public class HomeFragment extends Fragment {
 
                 CurrentOpeningItem openingItem = (CurrentOpeningItem) obj;
                 Intent intent = new Intent(getActivity(), ApplyJobActivity.class);
-                intent.putExtra(IntentData.INTENT_CURRENT_OPENING_ITEM,openingItem);
-//                startActivity(intent);
+
+                com.mycompanynew.life_at_my_company.response.CurrentOpeningItem item = new com.mycompanynew.life_at_my_company.response.CurrentOpeningItem();
+                item.setCompanyCurrentOpeningId(openingItem.getCompanyCurrentOpeningId());
+                item.setCompanyCurrentOpeningTitle(openingItem.getCompanyCurrentOpeningTitle());
+                item.setCompanyCurrentOpeningPosition(openingItem.getCompanyCurrentOpeningPosition());
+                item.setCompanyCurrentOpeningAddress(openingItem.getCompanyCurrentOpeningAddress());
+                item.setCompanyCurrentOpeningTiming(openingItem.getCompanyCurrentOpeningTiming());
+
+                intent.putExtra(IntentData.INTENT_CURRENT_OPENING_ITEM, item);
+                startActivity(intent);
             }
         });
 
@@ -171,7 +185,7 @@ public class HomeFragment extends Fragment {
         binding.mbtnOurServiceViewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(homeButtonClickListener != null)
+                if (homeButtonClickListener != null)
                     homeButtonClickListener.clickOnViewAllOurService(view);
             }
         });
@@ -218,7 +232,7 @@ public class HomeFragment extends Fragment {
     private void setHomeSlider() {
         homeSliderViewPageAdapter = new HomeSliderViewPageAdapter(getActivity(), slider);
         binding.vpSlider.setAdapter(homeSliderViewPageAdapter);
-        binding.vpSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+       /* binding.vpSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -233,8 +247,21 @@ public class HomeFragment extends Fragment {
             public void onPageScrollStateChanged(int state) {
 
             }
-        });
+        });*/
+        binding.vpSlider.addOnPageChangeListener(new CircularViewPagerHandler(binding.vpSlider));
         binding.indicator.attachToPager(binding.vpSlider);
+
+        runnableTopSlider = new Runnable() {
+            @Override
+            public void run() {
+                if (binding.vpSlider.getCurrentItem() == (slider.size() - 1))
+                    binding.vpSlider.setCurrentItem(0, true);
+                else
+                    binding.vpSlider.setCurrentItem(binding.vpSlider.getCurrentItem() + 1, true);
+                handlerTopSlider.postDelayed(runnableTopSlider, interval);
+            }
+        };
+
     }
 
     public void getData() {
@@ -292,6 +319,9 @@ public class HomeFragment extends Fragment {
         if (homeSliderViewPageAdapter != null)
             homeSliderViewPageAdapter.notifyDataSetChanged();
 
+        if (slider.size() > 1)
+            handlerTopSlider.postDelayed(runnableTopSlider, interval);
+
         AboutCompany aboutCompany = response.getAboutCompany();
         binding.mtvCompanyName.setText(aboutCompany.getCompanyHomeTitle());
         binding.mtvCompanyDescription.setText(aboutCompany.getCompanyHomeDescription());
@@ -327,4 +357,6 @@ public class HomeFragment extends Fragment {
             binding.llcCurrentOpening.setVisibility(View.GONE);
         }
     }
+
+
 }
