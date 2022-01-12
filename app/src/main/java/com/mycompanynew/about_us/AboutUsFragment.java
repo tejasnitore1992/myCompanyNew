@@ -80,7 +80,7 @@ public class AboutUsFragment extends Fragment {
     }
 
     public void getData() {
-
+        binding.loader.rlLoader.setVisibility(View.VISIBLE);
         restCall.getAboutUsData(
                 "getAboutUs",
                 preferenceManager.getSocietyId(),
@@ -97,6 +97,7 @@ public class AboutUsFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 binding.nestedScrollView.setVisibility(View.GONE);
                                 binding.llMsg.setVisibility(View.VISIBLE);
                                 binding.mtvMsg.setText("Something went wrong!!!");
@@ -110,6 +111,7 @@ public class AboutUsFragment extends Fragment {
                         requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
                                     binding.nestedScrollView.setVisibility(View.VISIBLE);

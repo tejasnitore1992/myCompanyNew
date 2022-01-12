@@ -140,5 +140,7 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <include layout="@layout/loader"
+        android:id="@+id/loader"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

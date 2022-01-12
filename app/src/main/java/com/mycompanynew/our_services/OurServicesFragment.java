@@ -72,7 +72,7 @@ public class OurServicesFragment extends Fragment {
                         preferenceManager.getRegisteredUserId(),
                         preferenceManager.getKeyValueString(VariableBag.USER_Mobile)));
 
-
+        binding.loader.rlLoader.setVisibility(View.GONE);
         return root;
     }
 
@@ -101,7 +101,7 @@ public class OurServicesFragment extends Fragment {
     }
 
     public void getData() {
-
+        binding.loader.rlLoader.setVisibility(View.VISIBLE);
         restCall.getOurServiceData(
                 "getOurServices",
                 preferenceManager.getSocietyId(),
@@ -118,6 +118,7 @@ public class OurServicesFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 binding.rvOurService.setVisibility(View.GONE);
                                 binding.llMsg.setVisibility(View.VISIBLE);
                                 binding.mtvMsg.setText("Something went wrong!!!");
@@ -131,6 +132,7 @@ public class OurServicesFragment extends Fragment {
                         requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
                                     binding.rvOurService.setVisibility(View.VISIBLE);

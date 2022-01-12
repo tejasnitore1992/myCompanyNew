@@ -284,6 +284,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void getData() {
+        binding.loader.rlLoader.setVisibility(View.VISIBLE);
         restCall.getDashboardData(
                 "getDashboardData",
                 preferenceManager.getSocietyId(),
@@ -293,6 +294,7 @@ public class HomeFragment extends Fragment {
                 .subscribe(new Subscriber<DashboardResponse>() {
                     @Override
                     public void onCompleted() {
+
                     }
 
                     @Override
@@ -300,6 +302,7 @@ public class HomeFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 binding.nestedScrollView.setVisibility(View.GONE);
                                 binding.llMsg.setVisibility(View.VISIBLE);
                                 binding.mtvMsg.setText("Something went wrong!!!");
@@ -313,6 +316,7 @@ public class HomeFragment extends Fragment {
                         requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
                                     binding.nestedScrollView.setVisibility(View.VISIBLE);

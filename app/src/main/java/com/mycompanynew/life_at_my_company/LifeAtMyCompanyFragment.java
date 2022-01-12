@@ -72,6 +72,7 @@ public class LifeAtMyCompanyFragment extends Fragment {
                         preferenceManager.getRegisteredUserId(),
                         preferenceManager.getKeyValueString(VariableBag.USER_Mobile)));
 
+        binding.loader.rlLoader.setVisibility(View.GONE);
 
         return view;
     }
@@ -97,7 +98,7 @@ public class LifeAtMyCompanyFragment extends Fragment {
     }
 
     public void getData() {
-
+        binding.loader.rlLoader.setVisibility(View.VISIBLE);
         restCall.getCurrentOpeningData(
                 "getCurrentOpening",
                 preferenceManager.getSocietyId(),
@@ -114,6 +115,7 @@ public class LifeAtMyCompanyFragment extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 binding.nestedScrollView.setVisibility(View.GONE);
                                 binding.llMsg.setVisibility(View.VISIBLE);
                                 binding.mtvMsg.setText("Something went wrong!!!");
@@ -127,6 +129,7 @@ public class LifeAtMyCompanyFragment extends Fragment {
                         requireActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
                                     binding.nestedScrollView.setVisibility(View.VISIBLE);

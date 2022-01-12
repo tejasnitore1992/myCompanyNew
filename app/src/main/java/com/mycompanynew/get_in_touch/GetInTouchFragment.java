@@ -43,6 +43,7 @@ public class GetInTouchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        binding.loader.rlLoader.setVisibility(View.GONE);
 
     }
 }

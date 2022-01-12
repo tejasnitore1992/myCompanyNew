@@ -94,6 +94,14 @@ public class ApplyJobActivity extends AppCompatActivity {
                         preferenceManager.getRegisteredUserId(),
                         preferenceManager.getKeyValueString(VariableBag.USER_Mobile)));
 
+        binding.materialToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        binding.loader.rlLoader.setVisibility(View.GONE);
 
         init();
     }
@@ -358,6 +366,8 @@ public class ApplyJobActivity extends AppCompatActivity {
     private void applyJob(String openingId, String name, String dateOfBirth, String gender, String state, String city,
                           String contactNo, String emailId, String education, String totalYearOfExperience) {
 
+        binding.loader.rlLoader.setVisibility(View.VISIBLE);
+
       /*  File resume = null;
         PRRequestBody requestFile = new PRRequestBody(resume, MediaType.parse(Uri.fromFile(resume).toString()));
         requestFile.setFileUploaderCallback(new PRRequestBody.FileUploaderCallback() {
@@ -410,6 +420,7 @@ public class ApplyJobActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
@@ -421,6 +432,7 @@ public class ApplyJobActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                binding.loader.rlLoader.setVisibility(View.GONE);
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
                                     Toast.makeText(context, response.getMessage(), Toast.LENGTH_LONG).show();
