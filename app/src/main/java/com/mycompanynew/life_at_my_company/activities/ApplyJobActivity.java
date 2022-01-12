@@ -5,22 +5,10 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.documentfile.provider.DocumentFile;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Path;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -34,7 +22,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.mycompanynew.R;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.documentfile.provider.DocumentFile;
+
 import com.mycompanynew.databinding.ActivityApplyJobBinding;
 import com.mycompanynew.interfaces.DateSelectListener;
 import com.mycompanynew.life_at_my_company.response.ApplyOpeningResponse;
@@ -44,15 +41,13 @@ import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
 import com.mycompanynew.utils.Functions;
 import com.mycompanynew.utils.IntentData;
-import com.mycompanynew.utils.PRRequestBody;
 import com.mycompanynew.utils.PathUtil;
-import com.mycompanynew.utils.PathUtil1;
+import com.mycompanynew.utils.PathUtilZ;
 import com.mycompanynew.utils.PreferenceManager;
 import com.mycompanynew.utils.Tools;
 import com.mycompanynew.utils.VariableBag;
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,7 +56,6 @@ import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
@@ -81,6 +75,7 @@ public class ApplyJobActivity extends AppCompatActivity {
     private SimpleDateFormat sdfYmd = new SimpleDateFormat("yyyy-MM-dd");
 
     private ActivityResultLauncher<Intent> someActivityResultLauncher;
+    private ActivityResultLauncher<Intent> filePermissionActivityResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +98,9 @@ public class ApplyJobActivity extends AppCompatActivity {
         init();
     }
 
-    private void init(){
+    private void init() {
 
-        spinnerPositionArrayAdapter = new ArrayAdapter<CurrentOpeningItem>(this, android.R.layout.simple_spinner_item,currentOpeningItemList);
+        spinnerPositionArrayAdapter = new ArrayAdapter<CurrentOpeningItem>(this, android.R.layout.simple_spinner_item, currentOpeningItemList);
         spinnerPositionArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         binding.acsPosition.setAdapter(spinnerPositionArrayAdapter);
@@ -117,11 +112,11 @@ public class ApplyJobActivity extends AppCompatActivity {
 
                     String selectedDateStr = binding.tietDateOfBirth.getText().toString();
                     Date selectedDate = null;
-                    if(!TextUtils.isEmpty(selectedDateStr))
+                    if (!TextUtils.isEmpty(selectedDateStr))
                         selectedDate = sdfDmy.parse(selectedDateStr);
 
                     Calendar calendarMaxDate = Calendar.getInstance();
-                    calendarMaxDate.add(Calendar.YEAR,-8);
+                    calendarMaxDate.add(Calendar.YEAR, -8);
 
                     Functions.showDatePicker(context, selectedDate, null, calendarMaxDate.getTime(), new DateSelectListener() {
                         @Override
@@ -130,21 +125,20 @@ public class ApplyJobActivity extends AppCompatActivity {
                         }
                     });
 
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
 
-
         binding.mbtnChooseFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(checkPermission()){
+                if (checkPermission()) {
                     selectFile();
-                }else{
+                } else {
                     requestPermission();
                 }
 
@@ -166,18 +160,49 @@ public class ApplyJobActivity extends AppCompatActivity {
                         if (result.getResultCode() == Activity.RESULT_OK) {
                             // There are no request codes
                             Uri uri = result.getData().getData();
-                            DocumentFile file = DocumentFile.fromSingleUri(context,uri);
+                            DocumentFile file = DocumentFile.fromSingleUri(context, uri);
                             file.getUri().getPath();
-                            Log.i("My Company URI",uri.getPath());
+                            Log.i("My Company URI", uri.getPath());
                             try {
-                                Log.i("My Company PATH", PathUtil.getPath(context,uri));
+                                // TODO: 12-01-2022 Parth 
+//                                Log.i("My Company nor", uri.normalizeScheme().getPath());
+//                                Log.i("My Company encode PATH", uri.getEncodedPath());
+//                                Log.i("My Company PATH", new PathUtil(context).getPath(uri));
+
+//                                File convertFile = new File("content://com.android.providers.media.documents"+uri.getPath());
+//                                Log.i("My Company PATH", new PathUtil(context).getPath(Uri.fromFile(convertFile)));
+
+//                                Uri uri = data.getData();
+                                /*File file1 = new File(uri.getPath());//create path from uri
+                                final String[] split = file1.getPath().split(":");//split the path.
+                                String filePath = split[1];
+                                Log.i("My Company filePath", filePath);*/
+//                                Log.i("My Company PATH", PathUtil.getPath(context, uri));
 //                                Log.i("My Company PATH", uri.getEncodedPath());
 //                                File file = new File(uri);
 //                                Log.i("My Company PATH", file.getAbsolutePath());
-                                Log.i("My Company PATH", file.getUri().getPath());
+//                                Log.i("My Company PATH", file.getUri().getPath());
+                                Log.i("My Company PATH",new PathUtilZ(context).getPath(uri));
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 Log.i("My Company Error", e.getMessage());
+                            }
+                        }
+                    }
+                });
+
+        filePermissionActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            // There are no request codes
+
+                            if (SDK_INT >= Build.VERSION_CODES.R) {
+                                if (Environment.isExternalStorageManager())
+                                    selectFile();
                             }
                         }
                     }
@@ -188,13 +213,13 @@ public class ApplyJobActivity extends AppCompatActivity {
 
     private void handleBundle() {
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null && bundle.containsKey(IntentData.INTENT_CURRENT_OPENING_ITEM)){
+        if (bundle != null && bundle.containsKey(IntentData.INTENT_CURRENT_OPENING_ITEM)) {
             CurrentOpeningItem openingItem = (CurrentOpeningItem) bundle.getSerializable(IntentData.INTENT_CURRENT_OPENING_ITEM);
             currentOpeningItemList.clear();
             currentOpeningItemList.add(openingItem);
-            if(spinnerPositionArrayAdapter != null)
+            if (spinnerPositionArrayAdapter != null)
                 spinnerPositionArrayAdapter.notifyDataSetChanged();
-        }else{
+        } else {
             getData();
         }
     }
@@ -218,7 +243,7 @@ public class ApplyJobActivity extends AppCompatActivity {
                             @Override
                             public void run() {
 
-                                Toast.makeText(context,"Something went wrong!!!",Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, "Something went wrong!!!", Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -236,7 +261,7 @@ public class ApplyJobActivity extends AppCompatActivity {
                                     setData(response);
                                 } else {
                                     // No data view
-                                   Toast.makeText(context,"Something went wrong!!!",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "Something went wrong!!!", Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -254,7 +279,7 @@ public class ApplyJobActivity extends AppCompatActivity {
         item.setCompanyCurrentOpeningTiming("");
         currentOpeningItemList.add(item);
         currentOpeningItemList.addAll(response.getOpeningItemList());
-        if(spinnerPositionArrayAdapter != null)
+        if (spinnerPositionArrayAdapter != null)
             spinnerPositionArrayAdapter.notifyDataSetChanged();
     }
 
@@ -264,11 +289,11 @@ public class ApplyJobActivity extends AppCompatActivity {
         String name = binding.tietName.getText().toString();
         String dateOfBirth = binding.tietDateOfBirth.getText().toString();
         String gender = null;
-        if(binding.rbMale.isChecked()){
+        if (binding.rbMale.isChecked()) {
             gender = binding.rbMale.getText().toString();
-        }else if(binding.rbFemale.isChecked()){
+        } else if (binding.rbFemale.isChecked()) {
             gender = binding.rbFemale.getText().toString();
-        }else if(binding.rbGenderOther.isChecked()){
+        } else if (binding.rbGenderOther.isChecked()) {
             gender = binding.rbGenderOther.getText().toString();
         }
         String state = binding.tietState.getText().toString();
@@ -276,61 +301,61 @@ public class ApplyJobActivity extends AppCompatActivity {
         String contactNo = binding.tietContactNo.getText().toString();
         String emailId = binding.tietEmailId.getText().toString();
         String education = null;
-        if(binding.rbGraduate.isChecked()){
+        if (binding.rbGraduate.isChecked()) {
             education = binding.rbGraduate.getText().toString();
-        }else if(binding.rbPostGraduate.isChecked()){
+        } else if (binding.rbPostGraduate.isChecked()) {
             education = binding.rbPostGraduate.getText().toString();
-        }else if(binding.rbEducationOther.isChecked()){
+        } else if (binding.rbEducationOther.isChecked()) {
             education = binding.rbEducationOther.getText().toString();
         }
 
         String totalYearOfExperience = (String) binding.acsTotalYearOfExperience.getSelectedItem();
 
-        if(selectedOpening.getCompanyCurrentOpeningId() == null || Integer.parseInt(selectedOpening.getCompanyCurrentOpeningId()) < 1){
-            Toast.makeText(context,"Please select position!!!",Toast.LENGTH_LONG).show();
+        if (selectedOpening.getCompanyCurrentOpeningId() == null || Integer.parseInt(selectedOpening.getCompanyCurrentOpeningId()) < 1) {
+            Toast.makeText(context, "Please select position!!!", Toast.LENGTH_LONG).show();
             binding.acsPosition.requestFocus();
             binding.scrollView.fullScroll(ScrollView.FOCUS_UP);
-        }else if(TextUtils.isEmpty(name)){
+        } else if (TextUtils.isEmpty(name)) {
 
-            Toast.makeText(context,"Please entre name!!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Please entre name!!!", Toast.LENGTH_LONG).show();
             binding.tietName.requestFocus();
-        }else if(TextUtils.isEmpty(dateOfBirth)){
+        } else if (TextUtils.isEmpty(dateOfBirth)) {
 
-            Toast.makeText(context,"Please select date of birth!!!",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Please select date of birth!!!", Toast.LENGTH_LONG).show();
             binding.tietDateOfBirth.requestFocus();
-        }else if(TextUtils.isEmpty(gender)){
-            Toast.makeText(context,"Please select gender!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(gender)) {
+            Toast.makeText(context, "Please select gender!!!", Toast.LENGTH_LONG).show();
             binding.rgGender.requestFocus();
-        }else if(TextUtils.isEmpty(state)){
-            Toast.makeText(context,"Please entre state!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(state)) {
+            Toast.makeText(context, "Please entre state!!!", Toast.LENGTH_LONG).show();
             binding.tietState.requestFocus();
-        }else if(TextUtils.isEmpty(city)){
-            Toast.makeText(context,"Please entre city!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(city)) {
+            Toast.makeText(context, "Please entre city!!!", Toast.LENGTH_LONG).show();
             binding.tietCity.requestFocus();
-        }else if(TextUtils.isEmpty(contactNo)){
-            Toast.makeText(context,"Please entre contact number!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(contactNo)) {
+            Toast.makeText(context, "Please entre contact number!!!", Toast.LENGTH_LONG).show();
             binding.tietContactNo.requestFocus();
-        }else if(TextUtils.isEmpty(emailId)){
-            Toast.makeText(context,"Please entre email address!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(emailId)) {
+            Toast.makeText(context, "Please entre email address!!!", Toast.LENGTH_LONG).show();
             binding.tietEmailId.requestFocus();
-        }else if(TextUtils.isEmpty(education)){
-            Toast.makeText(context,"Please select eduction!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(education)) {
+            Toast.makeText(context, "Please select eduction!!!", Toast.LENGTH_LONG).show();
             binding.rgEducationInfo.requestFocus();
-        }else if(TextUtils.isEmpty(totalYearOfExperience)){
-            Toast.makeText(context,"Please select total year of experience!!!",Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(totalYearOfExperience)) {
+            Toast.makeText(context, "Please select total year of experience!!!", Toast.LENGTH_LONG).show();
             binding.acsTotalYearOfExperience.requestFocus();
-        }else{
+        } else {
             try {
                 applyJob(selectedOpening.getCompanyCurrentOpeningId(), name, sdfYmd.format(
                         sdfDmy.parse(dateOfBirth)
                 ), gender, state, city, contactNo, emailId, education, totalYearOfExperience);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private void applyJob(String openingId,String name, String dateOfBirth, String gender, String state, String city,
+    private void applyJob(String openingId, String name, String dateOfBirth, String gender, String state, String city,
                           String contactNo, String emailId, String education, String totalYearOfExperience) {
 
       /*  File resume = null;
@@ -344,19 +369,19 @@ public class ApplyJobActivity extends AppCompatActivity {
         MultipartBody.Part bodyResume =
                 MultipartBody.Part.createFormData("company_current_opening_resume", resume.getName(), requestFile);
 */
-        RequestBody requestBodyApplyOpening = RequestBody.create("applyOpening",MediaType.parse("multipart/form-data"));
-        RequestBody requestBodySocietyId = RequestBody.create(preferenceManager.getSocietyId(),MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyLanguageId = RequestBody.create(preferenceManager.getLanguageId(),MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyOpeningId = RequestBody.create(openingId,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyName = RequestBody.create(name,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyDateOfBirth = RequestBody.create(dateOfBirth,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyGender = RequestBody.create(gender,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyState = RequestBody.create(state,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyCity = RequestBody.create(city,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyContactNo = RequestBody.create(contactNo,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyEmailId = RequestBody.create(emailId,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyEduction = RequestBody.create(education,MediaType.parse("multipart/form-data"));
-        RequestBody requestBodyTotalYearOfExperience = RequestBody.create(totalYearOfExperience,MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyApplyOpening = RequestBody.create("applyOpening", MediaType.parse("multipart/form-data"));
+        RequestBody requestBodySocietyId = RequestBody.create(preferenceManager.getSocietyId(), MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyLanguageId = RequestBody.create(preferenceManager.getLanguageId(), MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyOpeningId = RequestBody.create(openingId, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyName = RequestBody.create(name, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyDateOfBirth = RequestBody.create(dateOfBirth, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyGender = RequestBody.create(gender, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyState = RequestBody.create(state, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyCity = RequestBody.create(city, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyContactNo = RequestBody.create(contactNo, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyEmailId = RequestBody.create(emailId, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyEduction = RequestBody.create(education, MediaType.parse("multipart/form-data"));
+        RequestBody requestBodyTotalYearOfExperience = RequestBody.create(totalYearOfExperience, MediaType.parse("multipart/form-data"));
 
         restCall.applyOpening(
                 requestBodyApplyOpening,
@@ -382,10 +407,10 @@ public class ApplyJobActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                       runOnUiThread(new Runnable() {
+                        runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(context,e.getMessage(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         });
                     }
@@ -398,10 +423,10 @@ public class ApplyJobActivity extends AppCompatActivity {
                             public void run() {
                                 if (response.getStatus().equalsIgnoreCase(VariableBag.SUCCESS_CODE)) {
                                     // code here
-                                    Toast.makeText(context,response.getMessage(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, response.getMessage(), Toast.LENGTH_LONG).show();
                                 } else {
                                     // No data view
-                                    Toast.makeText(context,response.getMessage(),Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, response.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
@@ -413,9 +438,27 @@ public class ApplyJobActivity extends AppCompatActivity {
 
         Intent intent = null;
 
-            intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        /*intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/pdf");
+
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            // Optionally, specify a URI for the file that should appear in the
+            // system file picker when it loads.
+            File file = new File("Android/data/");
+            intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, Uri.fromFile(file));
+        }*/
+
+
+        if(SDK_INT < Build.VERSION_CODES.KITKAT){
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("application/pdf");
+        }else{
+            intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("application/pdf");
+            intent.putExtra(Intent.EXTRA_MIME_TYPES,new String[]{"application/pdf"});
+        }
         someActivityResultLauncher.launch(intent);
     }
 
@@ -431,21 +474,22 @@ public class ApplyJobActivity extends AppCompatActivity {
 
     private void requestPermission() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
-            /*try {
+            try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 intent.addCategory("android.intent.category.DEFAULT");
                 intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
-                startActivityForResult(intent, 2296);
+//                startActivityForResult(intent, 2296);
+                filePermissionActivityResultLauncher.launch(intent);
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                startActivityForResult(intent, 2296);
-
-            }*/
-            ActivityCompat.requestPermissions(ApplyJobActivity.this, new String[]{MANAGE_EXTERNAL_STORAGE}, 1000);
+//                startActivityForResult(intent, 2296);
+                filePermissionActivityResultLauncher.launch(intent);
+            }
+//            ActivityCompat.requestPermissions(ApplyJobActivity.this, new String[]{MANAGE_EXTERNAL_STORAGE}, 1000);
         } else {
             //below android 11
-            ActivityCompat.requestPermissions(ApplyJobActivity.this, new String[]{WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE}, 1000);
+            ActivityCompat.requestPermissions(ApplyJobActivity.this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, 1000);
         }
     }
 
@@ -454,11 +498,11 @@ public class ApplyJobActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (SDK_INT >= Build.VERSION_CODES.R) {
 
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 selectFile();
             }
 
-        }else{
+        } else {
             if (grantResults.length > 0) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     selectFile();
