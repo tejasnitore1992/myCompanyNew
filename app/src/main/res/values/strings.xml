@@ -61,6 +61,32 @@ When an unknown printer took a galley of type &amp; scrambled it to make a type 
 
     </string-array>
 
+    <string-array name="country_array">
+        <item>Select Country</item>
+
+    </string-array>
+
+    <string-array name="state_array">
+        <item>Select State</item>
+
+    </string-array>
+
+    <string-array name="city_array">
+        <item>Select City</item>
+
+    </string-array>
+
+    <string-array name="area_array">
+        <item>Select Area</item>
+
+    </string-array>
+
+
+    <string-array name="business_type_array">
+        <item>Select Business Type</item>
+
+    </string-array>
+
     <string-array name="apply_state_array">
         <item>State</item>
 
