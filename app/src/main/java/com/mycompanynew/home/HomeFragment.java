@@ -34,6 +34,7 @@ import com.mycompanynew.home.response.SliderItem;
 import com.mycompanynew.interfaces.ClickListener;
 import com.mycompanynew.interfaces.HomeButtonClickListener;
 import com.mycompanynew.life_at_my_company.activities.ApplyJobActivity;
+import com.mycompanynew.login.LoginActivity;
 import com.mycompanynew.network.RestCall;
 import com.mycompanynew.network.RestClient;
 import com.mycompanynew.our_services.activities.ServicesDetailsActivity;
@@ -111,6 +112,12 @@ public class HomeFragment extends Fragment {
             public void onRefresh() {
                 binding.swipeRefreshLayout.setRefreshing(false);
                 getData();
+            }
+        });
+        binding.rlLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
         getData();

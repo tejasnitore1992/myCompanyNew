@@ -37,4 +37,7 @@
     <color name="colorHorizontalLine">#000000</color>
 
     <color name="progressBackground">#9E000000</color>
+    <color name="colorLoginContinueButton">#96C43D</color>
+    <color name="colorIAgreeTo">#505050</color>
+    <color name="colorLoginBackground">#6AFFFFFF</color>
 </resources>
