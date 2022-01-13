@@ -74,6 +74,7 @@
                         android:foregroundTint="@color/white"
                         android:inputType="number"
                         android:textSize="@dimen/_14ssp"
+                        android:hint="Mobile Number"
                         android:textColor="@color/textPrimaryColor"
                         android:lines="1"
                         android:maxLength="10" />
@@ -104,7 +105,7 @@
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:gravity="center_horizontal"
                 android:text="Don't have an account?"
-                android:textColor="@color/grey_40"
+                android:textColor="@color/colorLoginPageRegisterNowText"
                 android:textSize="@dimen/_12ssp" />
 
             <LinearLayout
@@ -116,7 +117,7 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginStart="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:gravity="center_horizontal"
                 android:clickable="true"
@@ -128,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="Register Now"
-                    android:textColor="@color/grey_40"
+                    android:textColor="@color/colorLoginPageRegisterNowText"
                     android:textSize="@dimen/_12ssp" />
 
                 <View
@@ -148,14 +149,14 @@
         android:layout_height="@dimen/_60sdp"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_26sdp"
             android:background="@color/white"/>
 
 
@@ -163,7 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="I agree to the fincasys’\nTerms &amp; conditions and privacy Policy"
-            android:textColor="@color/grey_40"
+            android:textColor="@color/colorLoginPageIAgree"
             android:textSize="@dimen/_9ssp"/>
 
 

@@ -40,4 +40,7 @@
     <color name="colorLoginContinueButton">#96C43D</color>
     <color name="colorIAgreeTo">#505050</color>
     <color name="colorLoginBackground">#6AFFFFFF</color>
+    <color name="colorAddressBackground">#F8F8F8</color>
+    <color name="colorLoginPageRegisterNowText">#505050</color>
+    <color name="colorLoginPageIAgree">#505050</color>
 </resources>
